@@ -40,17 +40,6 @@ module.exports = function(grunt){
 			}
 		},
 
-		/*UGLYFY*/
-		uglify: {
-			options: {
-				beautify: false,
-				preserveComments: false,
-				quoteStyle: 1/*,
-				compress : {
-					drop_console:true
-				}*/
-
-			},
 
 			build:{
 				files: [{
@@ -84,7 +73,7 @@ module.exports = function(grunt){
 			},
 			js: {
 				files: ['src/js/*.js'],
-				tasks: [/*'jscs',*/'concat','uglify']
+				tasks: [/*'jscs',*/'concat',/*'uglify'*/]
 			},
 			options: {
 				nospawn: true
