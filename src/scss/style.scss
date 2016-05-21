@@ -18,3 +18,22 @@
 	@import 'desktop';
 }
 
+div#memory_board{
+	background:#CCC;
+	width:100vw;
+	height:100vh;
+	margin:0px auto;
+	box-sizing: border-box;
+}
+div#memory_board > div{
+	background-color: red;
+	border:#000 1px solid;
+	width:20%;
+	height:25%;
+	float:left;
+	padding:20px;
+	font-size:64px;
+	cursor:pointer;
+	text-align:center;
+	box-sizing: border-box;
+}
