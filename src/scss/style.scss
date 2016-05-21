@@ -2,4 +2,19 @@
 
 @import 'normalize';
 @import 'variables';
-@import 'measurements';
+@import 'mixins';
+
+@import 'main';
+
+@media screen and (max-width: $maxWidthMobile) {
+	@import 'mobile';
+}
+
+@media screen and (min-width: $minWidthTablet) and (max-width: $maxWidthTablet){
+	@import 'tablet';
+}
+
+@media screen and (min-width: $minWidthDesktop) {
+	@import 'desktop';
+}
+
