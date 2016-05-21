@@ -1,0 +1,51 @@
+.padding-top {
+	padding-top: $measurement;
+}
+
+.padding-bottom {
+	padding-bottom: $measurement;
+}
+
+.padding-left {
+	padding-left: $measurement;
+}
+
+.padding-right {
+	padding-right: $measurement;
+}
+
+.padding-vertical {
+	padding-top: $measurement;
+	padding-bottom: $measurement;
+}
+
+.padding-horizontal {
+	padding-left: $measurement;
+	padding-right: $measurement;
+}
+
+.margin-top {
+	margin-top: $measurement;
+}
+
+.margin-bottom {
+	margin-bottom: $measurement;
+}
+
+.margin-left {
+	margin-left: $measurement;
+}
+
+.margin-right {
+	margin-right: $measurement;
+}
+
+.margin-vertical {
+	margin-top: $measurement;
+	margin-bottom: $measurement;
+}
+
+.margin-horizontal {
+	margin-left: $measurement;
+	margin-right: $measurement;
+}
