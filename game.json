@@ -1,0 +1,180 @@
+{
+	"level": [
+		{
+			"name": "Easy",
+			"tiles": 4 
+		},
+		{
+			"name": "Normal",
+			"tiles": 6
+		},
+		{
+			"name": "Hard",
+			"tiles": 8
+		}
+	],
+
+	"tiles": [
+		{
+			"id": 1,
+			"background-color": "#FF530D"
+		},
+		{
+			"id": 2,
+			"background-color": "#8FCF0D"
+		},
+		{
+			"id": 3,
+			"background-color": "#E8980C"
+		},
+		{
+			"id": 4,
+			"background-color": "#4F0CE8"
+		},
+		{
+			"id": 5,
+			"background-color": "#E81FB7"
+		}, 
+		{ 
+			"id": 6,
+			"background-color": "#FF0000"
+		}
+		{
+			"id": 7,
+			"background-color": "#0DFFFA"
+		},
+		{
+			"id": 8,
+			"background-color": "#118EB2"
+		},
+		{ 
+			"id": 9,
+			"background-color": "#000000"
+		},
+		{
+			"id": 10,
+			"background-color": "#FFFFFF"
+		},
+		{
+			"id": 11,
+			"background-color": "#666666"
+		},
+		{
+			"id": 12,
+			"background-color": "#999999"
+		},
+		{
+			"id": 13,
+			"background-color": "#E823BD"
+		},
+		{
+			"id": 14,
+			"background-color": "#E883BD"
+		},
+		{
+			"id": 15,
+			"background-color": "#A511B2"
+		}, 
+		{
+			"id": 16,
+			"background-color": "#A550B2"
+		},
+		{
+			"id": 17,
+			"background-color": "#333333"
+		},
+		{
+			"id": 18,
+			"background-color": "#4A660D"
+		},
+		{
+			"id": 19,
+			"background-color": "#160EB2"
+		},
+		{
+			"id": 20,
+			"background-color": "#664E35"
+		},
+		{
+			"id": 21,
+			"background-color": "#864E35"
+		},
+		{
+			"id": 22,
+			"background-color": "#5C0000"
+		},
+		{
+			"id": 23,
+			"background-color": "#85146C"
+		},
+		{
+			"id": 24,
+			"background-color": "#064C41"
+		}, 
+		{
+			"id": 25,
+			"background-color": "#87A58A"
+		},
+		{
+			"id": 26,
+			"background-color": "#148548"
+		},
+		{
+			"id": 27,
+			"background-color": "#D74A51"
+		},
+		{
+			"id": 28,
+			"background-color": "#DD0034"
+		},
+		{
+			"id": 29,
+			"background-color": "#320038"
+		},
+		{
+			"id": 30,
+			"background-color": "#D5DC81"
+		},
+		{
+			"id": 31,
+			"background-color": "salmon"
+		},
+		{
+			"id": 32,
+			"background-color": "coral"
+		}
+
+	],
+	"highscore": [
+		{
+			"name": "Bosse",
+			"score": 61, 
+			"level": "Easy"
+		}, 
+		{
+			"name": "Mr. Bacon",
+			"score": 50,
+			"level": "Normal"
+		},
+		{
+			"name": "Bananen",
+			"score": 55,
+			"level": "Hard"
+		},
+		{
+			"name": "Pärlan",
+			"score": 66,
+			"level": "Hard"
+		},
+		{
+			"name": "Prisma",
+			"score": 58,
+			"level": "Normal"
+		},
+		{
+			"name": "Hawaiian Tropic",
+			"score": 40,
+			"level": "Easy"
+		}
+	]
+}
