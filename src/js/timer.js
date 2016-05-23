@@ -2,7 +2,7 @@ var game_started = false;
 var current_time = 0;
 var timer;
 
-document.getElementById('start').addEventListener('click', gameStatus);
+document.getElementById('startGame').addEventListener('click', gameStatus);
 
 function gameStatus () { 
 	if(game_started === false) {
