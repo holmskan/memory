@@ -1,0 +1,120 @@
+.wrapper{
+	
+	width:$maxWidthMobile;
+	margin:$margin;
+	background-color:pink;
+
+}
+
+section, div {
+	margin: 15px;
+	border: 2px solid black;
+	box-sizing:border-box;
+	//border-style: dotted;
+	border-color: $green;
+}
+
+section > div{
+	text-align:center;
+
+}
+
+table, th, td{
+	border:1px solid black;
+	margin:$margin;
+
+}
+
+th, td{
+	width: 200px;
+	height: 50px;
+	font-family:$font;
+}
+
+button{
+	border: 3px solid $green;
+	width: 150px;
+	background-color:$darkPink;
+}
+
+.formContainer {
+	margin: 15px;
+	border: 2px solid black;
+	border-style: dotted;
+	border-color: $green;
+	box-sizing:border-box;
+}
+
+.boardContainer {
+
+	@include clearfix;
+	
+	div{
+		height: 100px;
+		width: 100%;
+		margin:$margin;
+
+		#timer, #info{
+		border: 2px solid black;
+		margin:$margin;
+		
+		}
+
+		#timer{
+			float: right;
+		}
+
+		#info{
+			float: left;
+		}
+		
+	}
+
+}
+
+div#memoryBoard{
+
+	@include clearfix;
+	background:#CCC;
+	//width:100vw;
+	height:100vh;
+	margin:0px auto;
+	box-sizing: border-box;
+}
+
+div#memoryBoard > div{
+	
+	background-color: red;
+	border:#000 1px solid;
+	width:20%;
+	height:25%;
+	float:left;
+	padding:20px;
+	font-size:64px;
+	cursor:pointer;
+	text-align:center;
+	box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
