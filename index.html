@@ -6,13 +6,89 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	    <meta name="description" content="Demo project with jQuery">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='https://fonts.googleapis.com/css?family=Lato|Open+Sans' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/style.css">	
 		<style type="text/css"></style>
 	</head>
 	<body>
-		
-		<div id="memory_board"></div>
-		
+<main class="wrapper">
+	
+	<section class="formContainer">
+		<div>
+			<h1>Choose difficulty!</h1>
+			<form>
+	  			<input type="radio" name="easy" id="easy"><label>Easy</label>
+	  			<input type="radio" name="normal" id="normal"><label>Normal</label>
+	  			<input type="radio" name="hard" id="hard"><label>Hard</label>
+			</form>
+			<br>
+			<button id="startGame">Start!</button>
+			<br>
+			<br>
+		</div>
+	</section>
+	<section class="highScore">
+		<div>
+		<h1>Top 10</h1>
+			<table>
+				<tr>
+					<th>Alias</th>
+					<th>Time</th>
+					<th>Level</th>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+			<br><br>
+		</div>
+	</section>
+	<section class="boardContainer">
+		<div>
+			<button id="info">i</button>
+			<p id="timer">timer</p>
+		</div>
+		<div id="memoryBoard">memoboardet ska ligga här</div>
+	</section>
+	<section class="heighScoreContainer">
+		<div>
+			<h2>WOHO! you are awesome!</h2>
+			<p>you made it to the heighscorelist, enter your alias</p>
+			<label>Alias</label>
+			<br>
+			<input type="text" name="alias" id="alias" placeholder="Enter your alias!">
+			<br>
+			<button id="sendAlias">GO!</button>
+		</div>
+	</section>
+	<section class="endGameContainer">
+		<div>
+			<button id="nextLevle">Next level</button><br>
+			<button id="playAgain">Play again(syns bara om du lysckas med den svåra nivån)</button>
+			<p>you made it to the heighscorelist, enter your alias</p>
+			<button id="mainMenu">Back to main menu</button>
+			<div class="highScore">
+				<h1>Top 10</h1>
+				<table>
+					<tr>
+						<th>Alias</th>
+						<th>Time</th>
+						<th>Level</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</section>
+</main>
+
+		<!-- <div id="memory_board"></div> -->
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="js/scripts.min.js"></script>
 		<script>
