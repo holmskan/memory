@@ -15,11 +15,13 @@
 		
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="js/scripts.min.js"></script>
-		<script>newBoard(4);</script>
-		<script type="text/javascript">
-			jQuery(function(){
-			
-			});
+		<script>
+		var url = "/game.json";
+		loadXMLDoc(url, function(object) {
+			var no_of_tiles = object.levels[0].tiles
+			var tiles = objectToArray(object.tiles);
+			newBoard(no_of_tiles, tiles);
+		});
 		</script>
 	</body>
 </html>

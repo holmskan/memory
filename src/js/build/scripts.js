@@ -1,12 +1,29 @@
 // Scripted By Adam Khoury in connection with the following video tutorial:
 // http://www.youtube.com/watch?v=c_ohDPWmsM0
 
-//var memory_array = ['A','A','B','B','C','C','D','D','E','E','F','F','G','G','H','H','I','I','J','J'];
-var memory_array = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
 var new_memory_array = [];
 var memory_values = [];
 var memory_tile_ids = [];
 var tiles_flipped = 0;
+
+function loadXMLDoc(url, cb) {
+   
+	var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            if(typeof cb === 'function') {
+                cb(JSON.parse(xmlhttp.responseText));
+            }
+        }
+    }
+
+   xmlhttp.open("GET",url,true);
+   xmlhttp.send();
+
+}
+
+//var memory_array = ['A','A','B','B','C','C','D','D','E','E','F','F','G','G','H','H','I','I','J','J'];
 
 /**
  * Shufflefunktion för vår array
@@ -22,16 +39,25 @@ Array.prototype.memory_tile_shuffle = function(){
     }
 }
 
+function objectToArray(object) {
+	var output_array = [];
+	var length = Object.keys(object).length;
+	for(var i = 0; i < length; i++) {
+		output_array.push(object[i]);
+	}
+	return output_array;
+}
+
 /**
  * Rita ut spelplanen
  * @param  {Number} tiles Antalet brickor som ska ritas ut
  * @return {[type]}       [description]
  */
-function newBoard(horizontal_tiles){
+function newBoard(no_of_tiles, included_tiles) {
 
-	var unique_tiles = horizontal_tiles * (horizontal_tiles / 2);
-	var total_tiles = horizontal_tiles * horizontal_tiles;
-	var size = 100 / horizontal_tiles; 
+	var unique_tiles = no_of_tiles * (no_of_tiles / 2);
+	var total_tiles = no_of_tiles * no_of_tiles;
+	var size = 100 / no_of_tiles; 
 
 	/**
 	 * Hur många brickor har vi vänt
@@ -45,16 +71,16 @@ function newBoard(horizontal_tiles){
 	var output = '';
 
 	/**
-	 * Shuffla memory_array med vår memory_tile_shuffle
+	 * Shuffla included_tiles med vår memory_tile_shuffle
 	 */
-    memory_array.memory_tile_shuffle();
+    included_tiles.memory_tile_shuffle();
 
     /**
      * Hämta så många brickvärden som vår spelplan ska innehålla, lägg in varje två gånger
      */
     for(var i = 0; i < unique_tiles; i++){
-		new_memory_array.push(memory_array[i]);
-		new_memory_array.push(memory_array[i]);
+		new_memory_array.push(included_tiles[i]);
+		new_memory_array.push(included_tiles[i]);
 	}
 
 	/**
@@ -68,7 +94,7 @@ function newBoard(horizontal_tiles){
      * @return {[type]}     [description]
      */
 	for(var i = 0; i < new_memory_array.length; i++){
-		output += '<div id="tile_'+i+'" style="width: '+size+'vw; height: '+size+'vh" onclick="memoryFlipTile(this,\''+new_memory_array[i]+'\')"></div>';
+		output += '<div id="tile_'+i+'" style="width: '+size+'vw; height: '+size+'vh" onclick="memoryFlipTile(this,\''+new_memory_array[i]+'\','+i+')"></div>';
 	}
 	document.getElementById('memory_board').innerHTML = output;
 }
@@ -79,12 +105,12 @@ function newBoard(horizontal_tiles){
  * @param  {Number} val  	Brickans värde - finns två av varje på brädet
  * @return {type} [description]
  */
-function memoryFlipTile(tile,val){
+function memoryFlipTile(tile,val,id){
 	/* om det finns html i vår tile-variabel och det inte är klickat på två brickor... */
 	if(tile.innerHTML == "" && memory_values.length < 2){
 
 		/* gör brickans bakgrundsfärg till vit */
-		tile.style.background = '#FFF';
+		tile.style.background = val;
 		/* ta värdet i på brickan och rita ut det som HTML i boxen */
 		tile.innerHTML = val;
 		/* om det är första brickan som vänds av två: */
