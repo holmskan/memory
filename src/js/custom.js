@@ -8,24 +8,31 @@ var tiles_flipped = 0;
 var game_started = false; 
 var current_time = 0;
 var timer;
-var time = '';
+//var time = '';
+var current_level = 0;
 var url = "/game.json";
+var current_object;
 		
 loadXMLDoc(url, function(object) {
+	removeClasses('formContainer');
+	current_object = object;
+	console.log(current_object);
 	getLevels(object.levels);
 	var no_of_tiles = object.levels[0].tiles;
 	var tiles = objectToArray(object.tiles);
 	document.getElementById('startGame').addEventListener('click', function() { 
 		newBoard(tiles);
+		current_level = tiles;
 		hideElement('formContainer');
 		removeClasses('boardContainer');
 		
 	});
-
+	/*document.querySelector('[id^=tile_]').addEventListener('click', function() {
+			alert(this.id);
+	});*/
 
 	//newBoard(2, tiles);
 });
-
 function loadXMLDoc(url, cb) {
    
 	var xmlhttp = new XMLHttpRequest();
@@ -174,6 +181,7 @@ function memoryFlipTile(tile,val){
 					clearInterval(timer); 
 					hideElement('boardContainer');
 					removeClasses('endGameContainer');
+					//finishGame(current_object);
 					/* nollställ html-elementet som spelplanen ligger i */
 					//document.getElementById('memoryBoard').innerHTML = "";
 					/* rita ut ett nytt bräde */
@@ -218,7 +226,7 @@ function gameStatus () {
 
 function countTime() {
 	current_time++;
-	//var time = '';
+	var time = '';
 	var minutes = Math.floor(current_time/60);
 	var remaining_seconds = current_time%60;
 
@@ -269,17 +277,28 @@ function getLevels(object) {
 }
 
 function hideElement(id){
-
 	document.getElementById(id).className='hide';
-	
 }
 
 function removeClasses(id){
-
 	document.getElementById(id).className='';
 }
+/*
+function finishGame(object) {
 
+}
 
+function checkHighscore(object){
+
+	var length = Object.keys(object).length;
+	for(var i = 0; i < length; i++){
+
+		console.log(object[i].name +' ' + object[i].score);
+
+	} 
+
+}
+*/
 
 
 

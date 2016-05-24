@@ -1,9 +1,7 @@
 .wrapper{
-	
 	width:$maxWidthMobile;
 	margin:$margin;
 	background-color:pink;
-
 }
 
 section, div {
@@ -16,13 +14,11 @@ section, div {
 
 section > div{
 	text-align:center;
-
 }
 
 table, th, td{
 	border:1px solid black;
 	margin:$margin;
-
 }
 
 th, td{
@@ -66,14 +62,11 @@ button{
 
 		#info{
 			float: left;
-		}
-		
+		}	
 	}
-
 }
 
 div#memoryBoard{
-
 	@include clearfix;
 	background:#CCC;
 	//width:100vw;
@@ -83,7 +76,6 @@ div#memoryBoard{
 }
 
 div#memoryBoard > div{
-
 	background-color: red;
 	border:#000 1px solid;
 	width:20%;
@@ -97,7 +89,6 @@ div#memoryBoard > div{
 }
 
 .hide{
-	
 	display:none;
 }
 
