@@ -60,32 +60,32 @@
 		{
 			"name": "Bosse",
 			"score": 61, 
-			"level": "Easy"
+			"tiles": 4
 		}, 
 		{
 			"name": "Mr. Bacon",
 			"score": 50,
-			"level": "Normal"
+			"tiles": 6
 		},
 		{
 			"name": "Bananen",
 			"score": 55,
-			"level": "Hard"
+			"tiles": 8
 		},
 		{
 			"name": "Pärlan",
 			"score": 66,
-			"level": "Hard"
+			"tiles": 8
 		},
 		{
 			"name": "Prisma",
 			"score": 58,
-			"level": "Normal"
+			"tiles": 6
 		},
 		{
 			"name": "Hawaiian Tropic",
 			"score": 40,
-			"level": "Easy"
+			"tiles": 4
 		}
 	]
 }
