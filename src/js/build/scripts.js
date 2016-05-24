@@ -279,7 +279,6 @@ function removeClasses(id){
 	document.getElementById(id).className='';
 }
 
-function 
 
 
 
