@@ -12,50 +12,49 @@
 	</head>
 	<body>
 <main class="wrapper">
-	
-	<section class="formContainer">
+	<section id="formContainer">
 		<div>
 			<h1>Choose difficulty!</h1>
-			<form>
-	  			<label><input type="radio" name="level" value="4" id="easy"> Easy</label>
-	  			<label><input type="radio" name="level" id="normal"> Normal</label>
-	  			<label><input type="radio" name="level" id="hard"> Hard</label>
-			</form>
+
+			<form id="levels">
+	  		</form>
 			<br>
 			<button id="startGame">Start!</button>
 			<br>
 			<br>
 		</div>
+		<section id="highScore">
+			<div>
+			<h1>Top 10</h1>
+				<table>
+					<tr>
+						<th>Alias</th>
+						<th>Time</th>
+						<th>Level</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				<br><br>
+			</div>
+		</section>
 	</section>
-	<section class="highScore">
-		<div>
-		<h1>Top 10</h1>
-			<table>
-				<tr>
-					<th>Alias</th>
-					<th>Time</th>
-					<th>Level</th>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</table>
-			<br><br>
-		</div>
-	</section>
-	<section class="boardContainer">
+
+
+	<section id="boardContainer" class="hide">
 		<div>
 			<button id="info">i</button>
 			<p id="timer">timer</p>
 		</div>
 		<div id="memoryBoard">memoboardet ska ligga här</div>
 	</section>
-	<section class="heighScoreContainer">
+	<section id="highScoreContainer" class="hide">
 		<div>
-			<h2>WOHO! you are awesome!</h2>
-			<p>you made it to the heighscorelist, enter your alias</p>
+			<h2>WOHO! You are awesome!</h2>
+			<p>You made it to the highscorelist, enter your alias</p>
 			<label>Alias</label>
 			<br>
 			<input type="text" name="alias" id="alias" placeholder="Enter your alias!">
@@ -63,11 +62,11 @@
 			<button id="sendAlias">GO!</button>
 		</div>
 	</section>
-	<section class="endGameContainer">
+	<section id="endGameContainer" class="hide">
 		<div>
 			<button id="nextLevle">Next level</button><br>
-			<button id="playAgain">Play again(syns bara om du lysckas med den svåra nivån)</button>
-			<p>you made it to the heighscorelist, enter your alias</p>
+			<button id="playAgain">Play again (syns bara om du lyckas med den svåra nivån)</button>
+			<p>You made it to the heighscorelist, enter your alias</p>
 			<button id="mainMenu">Back to main menu</button>
 			<div class="highScore">
 				<h1>Top 10</h1>
@@ -92,12 +91,7 @@
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="js/scripts.min.js"></script>
 		<script>
-		var url = "/game.json";
-		loadXMLDoc(url, function(object) {
-			var no_of_tiles = object.levels[0].tiles
-			var tiles = objectToArray(object.tiles);
-			newBoard(no_of_tiles, tiles);
-		});
+		
 		</script>
 	</body>
 </html>
