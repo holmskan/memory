@@ -17,7 +17,7 @@
 		<div>
 			<h1>Choose difficulty!</h1>
 			<form>
-	  			<input type="radio" name="easy" id="easy"><label>Easy</label>
+	  			<input type="radio" name="easy" id="easy">Easy</label>
 	  			<input type="radio" name="normal" id="normal"><label>Normal</label>
 	  			<input type="radio" name="hard" id="hard"><label>Hard</label>
 			</form>
@@ -96,7 +96,7 @@
 		loadXMLDoc(url, function(object) {
 			var no_of_tiles = object.levels[0].tiles
 			var tiles = objectToArray(object.tiles);
-			newBoard(no_of_tiles, tiles);
+			newBoard(2, tiles);
 		});
 		</script>
 	</body>
