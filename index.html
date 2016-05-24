@@ -16,10 +16,8 @@
 	<section class="formContainer">
 		<div>
 			<h1>Choose difficulty!</h1>
-			<form>
-	  			<input type="radio" name="easy" id="easy">Easy</label>
-	  			<input type="radio" name="normal" id="normal"><label>Normal</label>
-	  			<input type="radio" name="hard" id="hard"><label>Hard</label>
+			<form id="levels">
+	  			
 			</form>
 			<br>
 			<button id="startGame">Start!</button>
@@ -54,8 +52,8 @@
 	</section>
 	<section class="heighScoreContainer">
 		<div>
-			<h2>WOHO! you are awesome!</h2>
-			<p>you made it to the heighscorelist, enter your alias</p>
+			<h2>WOHO! You are awesome!</h2>
+			<p>You made it to the highscorelist, enter your alias</p>
 			<label>Alias</label>
 			<br>
 			<input type="text" name="alias" id="alias" placeholder="Enter your alias!">
@@ -66,8 +64,8 @@
 	<section class="endGameContainer">
 		<div>
 			<button id="nextLevle">Next level</button><br>
-			<button id="playAgain">Play again(syns bara om du lysckas med den svåra nivån)</button>
-			<p>you made it to the heighscorelist, enter your alias</p>
+			<button id="playAgain">Play again (syns bara om du lyckas med den svåra nivån)</button>
+			<p>You made it to the heighscorelist, enter your alias</p>
 			<button id="mainMenu">Back to main menu</button>
 			<div class="highScore">
 				<h1>Top 10</h1>
@@ -92,12 +90,7 @@
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="js/scripts.min.js"></script>
 		<script>
-		var url = "/game.json";
-		loadXMLDoc(url, function(object) {
-			var no_of_tiles = object.levels[0].tiles
-			var tiles = objectToArray(object.tiles);
-			newBoard(2, tiles);
-		});
+		
 		</script>
 	</body>
 </html>

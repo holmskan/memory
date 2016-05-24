@@ -9,6 +9,17 @@ var game_started = false;
 var current_time = 0;
 var timer;
 var time = '';
+var url = "/game.json";
+		
+loadXMLDoc(url, function(object) {
+	getLevels(object.levels);
+	var no_of_tiles = object.levels[0].tiles;
+	var tiles = objectToArray(object.tiles);
+	document.getElementById('startGame').addEventListener('click', function() { 
+		newBoard(tiles);
+	});
+	//newBoard(2, tiles);
+});
 
 function loadXMLDoc(url, cb) {
    
@@ -57,7 +68,16 @@ function objectToArray(object) {
  * @param  {Number} tiles Antalet brickor som ska ritas ut
  * @return {[type]}       [description]
  */
-function newBoard(no_of_tiles, included_tiles) {
+function newBoard(included_tiles) {
+	var no_of_tiles;
+	var levels = document.getElementsByName('level');
+	for(var i = 0; i < levels.length; i++) {
+		if(levels[i].checked) {
+			no_of_tiles = levels[i].value;
+		}
+
+	}
+	
 
 	var unique_tiles = no_of_tiles * (no_of_tiles / 2);
 	var total_tiles = no_of_tiles * no_of_tiles;
@@ -221,4 +241,15 @@ function countTime() {
 
 	document.getElementById('timer').innerHTML = time;
 	return time;
+}
+
+function getLevels(object) {
+	var output = '';
+	var length = Object.keys(object).length;
+	for(var i = 0; i < length; i++) {
+		output += '<label><input type="radio" name="level" value="'+object[i].tiles+'"> '+object[i].name+'</label>';
+	}
+
+	document.getElementById('levels').innerHTML = output;
+
 }
