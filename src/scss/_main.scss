@@ -37,7 +37,7 @@ button{
 	background-color:$darkPink;
 }
 
-.formContainer {
+#formContainer {
 	margin: 15px;
 	border: 2px solid black;
 	border-style: dotted;
@@ -45,7 +45,7 @@ button{
 	box-sizing:border-box;
 }
 
-.boardContainer {
+#boardContainer {
 
 	@include clearfix;
 	
@@ -83,7 +83,7 @@ div#memoryBoard{
 }
 
 div#memoryBoard > div{
-	
+
 	background-color: red;
 	border:#000 1px solid;
 	width:20%;
@@ -96,7 +96,10 @@ div#memoryBoard > div{
 	box-sizing: border-box;
 }
 
-
+.hide{
+	
+	display:none;
+}
 
 
 

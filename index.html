@@ -12,8 +12,7 @@
 	</head>
 	<body>
 <main class="wrapper">
-	
-	<section class="formContainer">
+	<section id="formContainer">
 		<div>
 			<h1>Choose difficulty!</h1>
 
@@ -25,33 +24,35 @@
 			<br>
 			<br>
 		</div>
+		<section id="highScore">
+			<div>
+			<h1>Top 10</h1>
+				<table>
+					<tr>
+						<th>Alias</th>
+						<th>Time</th>
+						<th>Level</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				<br><br>
+			</div>
+		</section>
 	</section>
-	<section class="highScore">
-		<div>
-		<h1>Top 10</h1>
-			<table>
-				<tr>
-					<th>Alias</th>
-					<th>Time</th>
-					<th>Level</th>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</table>
-			<br><br>
-		</div>
-	</section>
-	<section class="boardContainer">
+
+
+	<section id="boardContainer" class="hide">
 		<div>
 			<button id="info">i</button>
 			<p id="timer">timer</p>
 		</div>
 		<div id="memoryBoard">memoboardet ska ligga här</div>
 	</section>
-	<section class="heighScoreContainer">
+	<section id="highScoreContainer" class="hide">
 		<div>
 			<h2>WOHO! You are awesome!</h2>
 			<p>You made it to the highscorelist, enter your alias</p>
@@ -62,7 +63,7 @@
 			<button id="sendAlias">GO!</button>
 		</div>
 	</section>
-	<section class="endGameContainer">
+	<section id="endGameContainer" class="hide">
 		<div>
 			<button id="nextLevle">Next level</button><br>
 			<button id="playAgain">Play again (syns bara om du lyckas med den svåra nivån)</button>
