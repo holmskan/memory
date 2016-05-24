@@ -5,6 +5,10 @@ var new_memory_array = [];
 var memory_values = [];
 var memory_tile_ids = [];
 var tiles_flipped = 0;
+var game_started = false; 
+var current_time = 0;
+var timer;
+var time = '';
 
 function loadXMLDoc(url, cb) {
    
@@ -94,9 +98,9 @@ function newBoard(no_of_tiles, included_tiles) {
      * @return {[type]}     [description]
      */
 	for(var i = 0; i < new_memory_array.length; i++){
-		output += '<div id="tile_'+i+'" style="width: '+size+'vw; height: '+size+'vh" onclick="memoryFlipTile(this,\''+new_memory_array[i]+'\','+i+')"></div>';
+		output += '<div id="tile_'+i+'" style="width: '+size+'%; height: '+size+'%" onclick="memoryFlipTile(this,\''+new_memory_array[i]+'\')"></div>';
 	}
-	document.getElementById('memory_board').innerHTML = output;
+	document.getElementById('memoryBoard').innerHTML = output;
 }
 
 /**
@@ -105,9 +109,13 @@ function newBoard(no_of_tiles, included_tiles) {
  * @param  {Number} val  	Brickans värde - finns två av varje på brädet
  * @return {type} [description]
  */
-function memoryFlipTile(tile,val,id){
+function memoryFlipTile(tile,val){
 	/* om det finns html i vår tile-variabel och det inte är klickat på två brickor... */
 	if(tile.innerHTML == "" && memory_values.length < 2){
+		if(game_started === false) {
+			timer = setInterval(countTime, 1000);
+			game_started = true;
+		}
 
 		/* gör brickans bakgrundsfärg till vit */
 		tile.style.background = val;
@@ -135,12 +143,17 @@ function memoryFlipTile(tile,val,id){
 				/* om hela brädet är tömt: */
 				/* det ser vi genom att jämföra värdena på tiles_flipped och memory_array */
 				if(tiles_flipped == new_memory_array.length){
-					/* poppa ett meddelande */
+					/* game status sätts till false för att kunna starta nytt spel */
+					game_started = false; 
+					/* timer-funktionen stannar */					
+					clearInterval(timer); 
 					alert("Board cleared... generating new board");
 					/* nollställ html-elementet som spelplanen ligger i */
-					document.getElementById('memory_board').innerHTML = "";
+					//document.getElementById('memoryBoard').innerHTML = "";
 					/* rita ut ett nytt bräde */
-					newBoard();
+					//newBoard();
+					
+
 				}
 			} else {
 				setTimeout(flip2Back, 500);
@@ -164,4 +177,48 @@ function flip2Back(){
     // Clear both arrays
     memory_values = [];
     memory_tile_ids = [];
+}
+
+
+
+//document.getElementById('startGame').addEventListener('click', gameStatus);
+
+function gameStatus () { 
+	if(game_started === false) {
+		timer = setInterval(countTime, 1000);
+		game_started = true;
+	} // när spelet är slut : game_started = false; clearInterval(timer); 
+}
+
+function countTime() {
+	current_time++;
+	//var time = '';
+	var minutes = Math.floor(current_time/60);
+	var remaining_seconds = current_time%60;
+
+	if(minutes < 0) {
+		if(remaining_seconds < 10) {
+			time = '00:0' + remaining_seconds;
+		} else {
+			time = '00:' + remaining_seconds;
+		} 
+	} else {
+		if(remaining_seconds < 10) {
+			if(minutes < 10) { 
+				time = '0' + minutes + ':0' + remaining_seconds;
+			} else {
+				time = minutes + ':0' + remaining_seconds;
+			}
+		} else {
+			if(minutes < 10) {
+				time = '0' + minutes + ':' + remaining_seconds;
+			} else {
+				time = minutes + ':' + remaining_seconds; 
+			}
+
+		} 
+	}
+
+	document.getElementById('timer').innerHTML = time;
+	return time;
 }
