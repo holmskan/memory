@@ -50,22 +50,20 @@
 		</div>
 		<div id="memoryBoard">memoboardet ska ligga här</div>
 	</section>
-	<section id="highScoreContainer" class="hide">
-		<div>
-			<h2>WOHO! You are awesome!</h2>
-			<p>You made it to the highscore top 10, enter your alias</p>
-			<label>Alias</label>
-			<br>
-			<input type="text" name="alias" id="alias" placeholder="Enter your alias!">
-			<br>
-			<button id="sendAlias">GO!</button>
-		</div>
-	</section>
 	<section id="endGameContainer" class="hide">
 		<div>
 			<button id="nextLevel">Next level</button><br>
 			<button id="playAgain">Play again (syns bara om du lyckas med den svåra nivån)</button>
-			<p>You made it to the highscore top 10, enter your alias</p>
+			<p id="isTimeOnHighScore">You made it to the highscore top 10, enter your alias</p>
+			<section id="highScoreContainer" class="hide">
+				<div>
+					<label>Alias</label>
+					<br>
+					<input type="text" name="alias" id="alias" placeholder="Enter your alias!">
+					<br>
+					<button id="sendAlias">GO!</button>
+				</div>
+			</section>
 			<button id="mainMenu">Back to main menu</button>
 			<div class="highscore">
 				<h1>Top 10 <span class="levelName"></span></h1>

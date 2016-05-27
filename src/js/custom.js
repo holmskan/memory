@@ -36,10 +36,26 @@ loadXMLDoc(url, function(object) {
         }
         
     }
+
+    /* när man klickar på "starta spel" */
 	document.getElementById('startGame').addEventListener('click', function() { 
-		newBoard(tiles);
+		var levels = document.getElementsByName('level');
+		for(var i = 0; i < levels.length; i++) {
+		if(levels[i].checked) {
+			level = levels[i].value;
+			}
+		}
+		newBoard(tiles, level);
 		//current_level = tiles;
 		hideElement('formContainer');
+		removeClasses('boardContainer');
+	});
+
+	/* när man klickar på "nästa nivå" */
+	document.getElementById('nextLevel').addEventListener('click', function() {
+		newBoard(tiles, current_level.nextlevel);
+		//current_level = tiles;
+		hideElement('endGameContainer');
 		removeClasses('boardContainer');
 	});
 	current_level = getLevel(current_object, 4);
@@ -97,19 +113,12 @@ function objectToArray(object) {
  * @param  {Number} tiles Antalet brickor som ska ritas ut
  * @return {[type]}       [description]
  */
-function newBoard(included_tiles) {
-	var no_of_tiles;
-	var levels = document.getElementsByName('level');
-	for(var i = 0; i < levels.length; i++) {
-		if(levels[i].checked) {
-			no_of_tiles = levels[i].value;
-		}
-	}
+function newBoard(included_tiles, no_of_tiles) {
 
-	
-	
 	var unique_tiles = no_of_tiles * (no_of_tiles / 2);
 	var total_tiles = no_of_tiles * no_of_tiles;
+
+	alert(total_tiles);
 	var size = 100 / no_of_tiles; 
 
 	/**
@@ -301,6 +310,11 @@ function removeClasses(id){
 function finishGame(object, tiles){
 	
 	//console.log(object);
+	/* nollställ spelplanen */
+	document.getElementById('memoryBoard').innerHTML = '';
+	/* nollställ memory arrays */
+	new_memory_array = [];
+	memory_values = [];
 	/* game status sätts till false för att kunna starta nytt spel */
 	game_started = false; 
 	/* timer-funktionen stannar */					
@@ -309,10 +323,14 @@ function finishGame(object, tiles){
 	removeClasses('endGameContainer');
 	if(isTimeOnHighscore(current_level.highscore, current_time)) {
 		// här ska det poppa upp så man kan skriva in sitt namn som sen sparas
+		document.getElementById('isTimeOnHighScore').innerHTML = 'You did it, awsm!';
+		removeClasses('highScoreContainer');
 	}
 	else {
 		// här ska det visas att du inte var bra nog för highscore
+		document.getElementById('isTimeOnHighScore').innerHTML = 'Sorry katten det här gick segt...';
 	}
+	current_time = 0;
 	getHighscore(object, 'highScore10', current_level.tiles, 10);
 }
 
@@ -321,21 +339,25 @@ function finishGame(object, tiles){
 	var length = Object.keys(object.levels).length;
 	var name;
 	var tiles;
+	var nextlevel = false;
 
 	for(var i = 0; i < length; i++){
 		if(object.levels[i].tiles === Number(num)) {
 			name 	= object.levels[i].name;
 			tiles 	= object.levels[i].tiles;
 			highscore = object.highscore[tiles] ? object.highscore[tiles] : [];
+			nextlevel = object.levels[Number(i+1)] ? object.levels[i+1].tiles : false;
 		}
 	}
 
 	obj = {
 		'name': name,
 		'tiles': tiles,
-		'highscore': highscore
+		'highscore': highscore,
+		'nextlevel': nextlevel
 	}
 
+	console.log(obj);
 	return obj;
 }
 
