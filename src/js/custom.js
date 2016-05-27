@@ -307,18 +307,36 @@ function finishGame(object, tiles){
 	clearInterval(timer); 
 	hideElement('boardContainer');
 	removeClasses('endGameContainer');
-
+	if(isTimeOnHighscore(current_level.highscore, current_time)) {
+		// här ska det poppa upp så man kan skriva in sitt namn som sen sparas
+	}
+	else {
+		// här ska det visas att du inte var bra nog för highscore
+	}
 	getHighscore(object, 'highScore10', current_level.tiles, 10);
 }
 
  function getLevel(object, num){
  	
 	var length = Object.keys(object.levels).length;
+	var name;
+	var tiles;
+
 	for(var i = 0; i < length; i++){
 		if(object.levels[i].tiles === Number(num)) {
-			return object.levels[i];
+			name 	= object.levels[i].name;
+			tiles 	= object.levels[i].tiles;
+			highscore = object.highscore[tiles] ? object.highscore[tiles] : [];
 		}
-	} 
+	}
+
+	obj = {
+		'name': name,
+		'tiles': tiles,
+		'highscore': highscore
+	}
+
+	return obj;
 }
 
 function getHighscore(object, elementId, level, rows) {
@@ -356,6 +374,28 @@ function compare(a,b) {
 	} else {  
     	return 0;
 	}
+}
+
+function isTimeOnHighscore(highscoreList, myTime) {
+	var tempHighscoreList = highscoreList ? highscoreList : [];
+	var tempObj = {
+		name: '',
+		time: myTime
+	};
+
+	tempHighscoreList.push(tempObj);
+	tempHighscoreList = tempHighscoreList.sort(compare).slice(0, 10);
+
+	var is_highscore = false;
+	var length = Object.keys(tempHighscoreList).length
+
+	for(var i = 0; i < length; i++) {
+		is_highscore = tempHighscoreList[i].time === tempObj.time ? true : false;
+		if(is_highscore) return is_highscore;
+	}
+
+	return is_highscore;
+
 }
 
 

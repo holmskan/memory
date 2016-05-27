@@ -31,6 +31,7 @@ loadXMLDoc(url, function(object) {
             	prev = this;
         	}
         
+        	current_level = getLevel(current_object, this.value);
         	getHighscore(current_object, 'highScore3', this.value);
         }
         
@@ -306,18 +307,36 @@ function finishGame(object, tiles){
 	clearInterval(timer); 
 	hideElement('boardContainer');
 	removeClasses('endGameContainer');
-
+	if(isTimeOnHighscore(current_level.highscore, current_time)) {
+		// här ska det poppa upp så man kan skriva in sitt namn som sen sparas
+	}
+	else {
+		// här ska det visas att du inte var bra nog för highscore
+	}
 	getHighscore(object, 'highScore10', current_level.tiles, 10);
 }
 
  function getLevel(object, num){
  	
 	var length = Object.keys(object.levels).length;
+	var name;
+	var tiles;
+
 	for(var i = 0; i < length; i++){
 		if(object.levels[i].tiles === Number(num)) {
-			return object.levels[i];
+			name 	= object.levels[i].name;
+			tiles 	= object.levels[i].tiles;
+			highscore = object.highscore[tiles] ? object.highscore[tiles] : [];
 		}
-	} 
+	}
+
+	obj = {
+		'name': name,
+		'tiles': tiles,
+		'highscore': highscore
+	}
+
+	return obj;
 }
 
 function getHighscore(object, elementId, level, rows) {
@@ -325,14 +344,16 @@ function getHighscore(object, elementId, level, rows) {
 	level = typeof level !== 'undefined' ? level : 4;
 	rows = typeof rows !== 'undefined' ? rows : 3;
 
-	var highscore = object.highscore[level];
-
+	/* finns en highscore för svårighetsgraden hämtas den, annars gör vi en tom array */
+	var highscore = object.highscore[level] ? object.highscore[level] : [];
+	highscore = highscore.sort(compare);
+	/* är antalet rader i arrayen mindre än antalet rader vi vill hämta tar vi det värdet, annars vårt förvalda värde */
+	var length = Object.keys(highscore).length < rows ? Object.keys(highscore).length : rows;
+	
 	var output = '';
 
-	for(var i = 0; i < rows; i++) {
-		if (highscore[i]) {
+	for(var i = 0; i < length; i++) {
 			output += '<tr><td>'+highscore[i].name+'</td><td>'+highscore[i].time+'</td></tr>';
-		}
 	}
 
 	document.getElementById(elementId).innerHTML = output;
@@ -342,12 +363,41 @@ function getHighscore(object, elementId, level, rows) {
 	for(var i = 0; i < level_spans.length; i++) {
 		level_spans[i].innerHTML = current_level.name;
 	}
+
 }
 
-/*
-function saveToHighscore() {
+function compare(a,b) {
+	if (a.time < b.time) { 
+    	return -1;
+	} else if (a.time > b.time) { 
+		return 1;
+	} else {  
+    	return 0;
+	}
+}
 
-}*/
+function isTimeOnHighscore(highscoreList, myTime) {
+	var tempHighscoreList = highscoreList ? highscoreList : [];
+	var tempObj = {
+		name: '',
+		time: myTime
+	};
+
+	tempHighscoreList.push(tempObj);
+	tempHighscoreList = tempHighscoreList.sort(compare).slice(0, 10);
+
+	var is_highscore = false;
+	var length = Object.keys(tempHighscoreList).length
+
+	for(var i = 0; i < length; i++) {
+		is_highscore = tempHighscoreList[i].time === tempObj.time ? true : false;
+		if(is_highscore) return is_highscore;
+	}
+
+	return is_highscore;
+
+}
+
 
 
 
