@@ -328,15 +328,14 @@ function getHighscore(object, elementId, level, rows) {
 
 	/* finns en highscore för svårighetsgraden hämtas den, annars gör vi en tom array */
 	var highscore = object.highscore[level] ? object.highscore[level] : [];
+	highscore = highscore.sort(compare);
 	/* är antalet rader i arrayen mindre än antalet rader vi vill hämta tar vi det värdet, annars vårt förvalda värde */
 	var length = Object.keys(highscore).length < rows ? Object.keys(highscore).length : rows;
 	
 	var output = '';
 
 	for(var i = 0; i < length; i++) {
-		//if (highscore[i]) {
 			output += '<tr><td>'+highscore[i].name+'</td><td>'+highscore[i].time+'</td></tr>';
-		//}
 	}
 
 	document.getElementById(elementId).innerHTML = output;
@@ -349,10 +348,16 @@ function getHighscore(object, elementId, level, rows) {
 
 }
 
-/*
-function saveToHighscore() {
+function compare(a,b) {
+	if (a.time < b.time) { 
+    	return -1;
+	} else if (a.time > b.time) { 
+		return 1;
+	} else {  
+    	return 0;
+	}
+}
 
-}*/
 
 
 
