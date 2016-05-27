@@ -22,7 +22,7 @@ loadXMLDoc(url, function(object) {
 	var tiles = objectToArray(object.tiles);
 	document.getElementById('startGame').addEventListener('click', function() { 
 		newBoard(tiles);
-		current_level = tiles;
+		//current_level = tiles;
 		hideElement('formContainer');
 		removeClasses('boardContainer');
 		
@@ -87,10 +87,10 @@ function newBoard(included_tiles) {
 		if(levels[i].checked) {
 			no_of_tiles = levels[i].value;
 		}
-
 	}
-	
 
+	current_level = no_of_tiles;
+	
 	var unique_tiles = no_of_tiles * (no_of_tiles / 2);
 	var total_tiles = no_of_tiles * no_of_tiles;
 	var size = 100 / no_of_tiles; 
@@ -175,13 +175,8 @@ function memoryFlipTile(tile,val){
 				/* om hela brädet är tömt: */
 				/* det ser vi genom att jämföra värdena på tiles_flipped och memory_array */
 				if(tiles_flipped == new_memory_array.length){
-					/* game status sätts till false för att kunna starta nytt spel */
-					game_started = false; 
-					/* timer-funktionen stannar */					
-					clearInterval(timer); 
-					hideElement('boardContainer');
-					removeClasses('endGameContainer');
-					//finishGame(current_object);
+					
+					finishGame(current_object, current_level);
 					/* nollställ html-elementet som spelplanen ligger i */
 					//document.getElementById('memoryBoard').innerHTML = "";
 					/* rita ut ett nytt bräde */
@@ -258,8 +253,10 @@ function countTime() {
 }
 
 function getLevels(object) {
+
 	var output = '';
 	var length = Object.keys(object).length;
+
 	for(var i = 0; i < length; i++) {
 		if (i === 1) {
 
@@ -283,12 +280,21 @@ function hideElement(id){
 function removeClasses(id){
 	document.getElementById(id).className='';
 }
-/*
-function finishGame(object) {
 
+function finishGame(object, tiles){
+	
+	console.log(object);
+	/* game status sätts till false för att kunna starta nytt spel */
+	game_started = false; 
+	/* timer-funktionen stannar */					
+	clearInterval(timer); 
+	hideElement('boardContainer');
+	removeClasses('endGameContainer');
+
+	getHighscore(object, 'highScore10', current_level, 10);
 }
 
-function checkHighscore(object){
+/* function checkHighscore(object){
 
 	var length = Object.keys(object).length;
 	for(var i = 0; i < length; i++){
@@ -297,9 +303,31 @@ function checkHighscore(object){
 
 	} 
 
-}
-*/
+} */
 
+function getHighscore(object, elementId, level, rows) {
+
+	level = typeof level !== 'undefined' ? level : 4;
+	rows = typeof rows !== 'undefined' ? rows : 3;
+
+	var highscore = object.highscore[level];
+
+	console.log(highscore[1].name);
+
+	var output = '';
+
+	for(var i = 0; i < rows; i++) {
+
+		if (highscore[i] === true) {
+
+			output += '<tr><td>'+highscore[i].name+'</td><td>'+highscore[i].time+'</td><td>'+level+'</td></tr>';
+
+		}
+	}
+
+	document.getElementById(elementId).innerHTML = output;
+
+}
 
 
 

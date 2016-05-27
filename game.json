@@ -53,39 +53,53 @@
 			"29": "#D5DC81",
 			"30": "salmon",
 			"31": "coral"
-		}
+		},
+	
+	"highscore":
+		{
+			"2": [
+				{
+					"name": "Mr. Bacon",
+					"time": 10
+				},
+				{
+					"name": "Bananen",
+					"time": 25
+				},
+				{
+					"name": "HW",
+					"time": 48
+				}
+			],
 
-	,
-	"highscore": [
-		{
-			"name": "Bosse",
-			"score": 61, 
-			"tiles": 4
-		}, 
-		{
-			"name": "Mr. Bacon",
-			"score": 50,
-			"tiles": 6
-		},
-		{
-			"name": "Bananen",
-			"score": 55,
-			"tiles": 8
-		},
-		{
-			"name": "Pärlan",
-			"score": 66,
-			"tiles": 8
-		},
-		{
-			"name": "Prisma",
-			"score": 58,
-			"tiles": 6
-		},
-		{
-			"name": "Hawaiian Tropic",
-			"score": 40,
-			"tiles": 4
+			"4": [
+				{
+					"name": "Bananen",
+					"time": 25
+				},
+				{
+					"name": "Mr. Bacon",
+					"time": 10
+				},
+				{
+					"name": "Prisman",
+					"time": 25
+				},
+				{
+					"name": "HW",
+					"time": 48
+				}
+			],
+
+			"6": [
+				{
+					"name": "HW",
+					"time": 48
+				},
+				{
+					"name": "Bananen",
+					"time": 25
+				}
+			]
 		}
-	]
 }
