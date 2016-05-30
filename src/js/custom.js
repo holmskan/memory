@@ -10,7 +10,7 @@ var current_time = 0;
 var timer;
 //var time = '';
 var current_level;
-var url = "/game.json";
+var url = "/game2.json";
 var current_object;
 	
 loadXMLDoc(url, function(object) {
@@ -95,6 +95,13 @@ loadXMLDoc(url, function(object) {
 		removeClasses('boardContainer');
 	});
 
+	/* när man klickar på "nästa nivå" */
+	document.getElementById('sendAlias').addEventListener('click', function() {
+		
+		saveToFile(current_level.highscore, current_object);
+		
+	});
+
 	/* hämta highscore för förstasidan, alla parametrar för det är förberedda i funktionen */
 	getHighscore(current_object, 'highScore3');
 
@@ -157,8 +164,6 @@ function newBoard(included_tiles, no_of_tiles) {
 
 	var unique_tiles = no_of_tiles * (no_of_tiles / 2);
 	var total_tiles = no_of_tiles * no_of_tiles;
-
-	alert(total_tiles);
 	var size = 100 / no_of_tiles; 
 
 	/**
@@ -361,17 +366,18 @@ function finishGame(object, tiles){
 	clearInterval(timer); 
 	hideElement('boardContainer');
 	removeClasses('endGameContainer');
-	if(isTimeOnHighscore(current_level.highscore, current_time)) {
+	if(current_level.highscore = isTimeOnHighscore(current_level.highscore, current_time)) {
+
 		// här ska det poppa upp så man kan skriva in sitt namn som sen sparas
 		document.getElementById('isTimeOnHighScore').innerHTML = 'You did it, awsm!';
 		removeClasses('highScoreContainer');
+		removeClasses('endGameHigscoreForm');
 	}
 	else {
 		// här ska det visas att du inte var bra nog för highscore
 		document.getElementById('isTimeOnHighScore').innerHTML = 'Sorry katten det här gick segt...';
 	}
 	current_time = 0;
-	getHighscore(object, 'highScore10', current_level.tiles, 10);
 }
 
 /**
@@ -459,7 +465,7 @@ function compare(a,b) {
 function isTimeOnHighscore(highscoreList, myTime) {
 	var tempHighscoreList = highscoreList ? highscoreList : [];
 	var tempObj = {
-		name: '',
+		name: false,
 		time: myTime
 	};
 
@@ -467,14 +473,54 @@ function isTimeOnHighscore(highscoreList, myTime) {
 	tempHighscoreList = tempHighscoreList.sort(compare).slice(0, 10);
 
 	var is_highscore = false;
-	var length = Object.keys(tempHighscoreList).length
+	var length = Object.keys(tempHighscoreList).length;
+
+	console.log(tempHighscoreList);
 
 	for(var i = 0; i < length; i++) {
-		is_highscore = tempHighscoreList[i].time === tempObj.time ? true : false;
-		if(is_highscore) return is_highscore;
+		//is_highscore = tempHighscoreList[i].time === tempObj.time && !tempObj.name ? true : false;
+		if(tempHighscoreList[i].time === tempObj.time && !tempObj.name) {
+			is_highscore = true;
+		}
+		if(is_highscore) return tempHighscoreList;
 	}
 
 	return is_highscore;
+
+}
+
+function saveToFile(highscore, object) {
+
+	// läsa av namnet man skrivit in i input
+	var newAlias = document.getElementById('alias').value;
+	
+	// loopa igenom newHighscoreList och lägga till namnet på den rad där det är tomt
+	var length = Object.keys(highscore).length;
+	for(var i = 0; i < length; i++) {
+		if(!highscore[i].name) {
+			highscore[i].name = newAlias;
+		}
+	}
+
+	// Byta ut befintlig highscoreList i objektet
+	object.highscore[current_level.tiles] = highscore;
+
+	// spara ner objektet via ajax och php till filen game(2).json
+	var ajax = new XMLHttpRequest();
+	ajax.open("POST", "saveobject.php", true);
+	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	object_json_string = JSON.stringify(object);
+	ajax.send('object='+object_json_string);
+
+	// dölj input och visa highscore
+	/* göm endGameContainer */
+	hideElement('endGameHigscoreForm');
+
+	// rita ut rätt highscore
+	getHighscore(object, 'highScore10', current_level.tiles, 10);
+
+	/* visa boardContainer */
+	removeClasses('endGameHighscore');
 
 }
 
