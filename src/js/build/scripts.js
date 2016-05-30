@@ -14,41 +14,98 @@ var url = "/game.json";
 var current_object;
 	
 loadXMLDoc(url, function(object) {
-	removeClasses('formContainer');
-	current_object = object;
-	//console.log(current_object);
-	getLevels(object.levels);
-	//var no_of_tiles = object.levels[0].tiles;
-	var tiles = objectToArray(object.tiles);
 
+	/* ta bort eventuella klasser från formContainer */
+	removeClasses('formContainer');
+
+	/* låt variabeln current_object bli ett alias för vårt json-objekt */
+	current_object = object;
+	
+	/* hämta alla våra nivåer och rita ut dem som radio buttons */
+	makeLevelRadioButtons(object.levels);
+
+	/* sätt current level till "Easy" */
+	current_level = getLevel(current_object, 4);
+
+	/* hämta alla brickor som finns lagrade i vårt json-objekt */
+	var tiles = objectToArray(current_object.tiles);
+
+	/* hämta alla radio buttons till en array */
 	var radio_buttons = document.getElementsByName('level');
-	//console.log(radio_buttons);
+	
+	/* en variabel som fördefinierat är noll för att vara tom */
 	var prev = null;
+
+	/* för varje radio button */
 	for(var i = 0; i < radio_buttons.length; i++) {
+
+		/* när man klickar på den */
     	radio_buttons[i].onclick = function() {
-    		(prev)? prev.value :null;
+
+    		/* alltså, fan vet vad som händer här... witchcraft */
+    		(prev) ? prev.value : null;
         	if(this !== prev) {
             	prev = this;
         	}
         
+        	/* sätt current_level till den markerade radioknappens nivå */
+        	current_level = getLevel(current_object, this.value);
+
+        	/* hämta highscore för den markerade radioknappens nivå */
         	getHighscore(current_object, 'highScore3', this.value);
         }
         
     }
-	document.getElementById('startGame').addEventListener('click', function() { 
-		newBoard(tiles);
-		//current_level = tiles;
+
+    /* när man klickar på "starta spel" */
+	document.getElementById('startGame').addEventListener('click', function() {
+		/* hämta alla radio buttons */ 
+		var levels = document.getElementsByName('level');
+		/* loopa igenom dem */
+		for(var i = 0; i < levels.length; i++) {
+			/* om en är checkad ska "levels" få dess värde, aka antalet tiles */
+			if(levels[i].checked) {
+				level = levels[i].value;
+			}
+		}
+
+		/* newBoard får alla tiles som ska ritas ut från json samt hur många brickor som ska vara på en rad */
+		newBoard(tiles, level);
+		
+		/* göm formContainer */
 		hideElement('formContainer');
+
+		/* visa boardContainer */
 		removeClasses('boardContainer');
 	});
-	current_level = getLevel(current_object, 4);
+
+	/* när man klickar på "nästa nivå" */
+	document.getElementById('nextLevel').addEventListener('click', function() {
+		
+		/* newBoard for alla tiles och hur antalet tiles för nästa bana, som lagrats i current_level.nextlevel */
+		newBoard(tiles, current_level.nextlevel);
+		
+		/* vi sätter current_level till nästa nivå */
+		current_level = getLevel(current_object, current_level.nextlevel);
+
+		/* göm endGameContainer */
+		hideElement('endGameContainer');
+
+		/* visa boardContainer */
+		removeClasses('boardContainer');
+	});
+
+	/* hämta highscore för förstasidan, alla parametrar för det är förberedda i funktionen */
 	getHighscore(current_object, 'highScore3');
-	/*document.querySelector('[id^=tile_]').addEventListener('click', function() {
-			alert(this.id);
-	});*/
-	
-	//newBoard(2, tiles);
+
 });
+
+/**
+ * Funktion för att läsa in externa filer och returnera resultatet som JSON
+ * @param  {string}   	url - filen som ska läsas in
+ * @param  {object} 	cb  - funktionen som håller objektet
+ * @return {object}     ett objekt
+ */
 function loadXMLDoc(url, cb) {
    
 	var xmlhttp = new XMLHttpRequest();
@@ -96,19 +153,12 @@ function objectToArray(object) {
  * @param  {Number} tiles Antalet brickor som ska ritas ut
  * @return {[type]}       [description]
  */
-function newBoard(included_tiles) {
-	var no_of_tiles;
-	var levels = document.getElementsByName('level');
-	for(var i = 0; i < levels.length; i++) {
-		if(levels[i].checked) {
-			no_of_tiles = levels[i].value;
-		}
-	}
+function newBoard(included_tiles, no_of_tiles) {
 
-	
-	
 	var unique_tiles = no_of_tiles * (no_of_tiles / 2);
 	var total_tiles = no_of_tiles * no_of_tiles;
+
+	alert(total_tiles);
 	var size = 100 / no_of_tiles; 
 
 	/**
@@ -268,7 +318,7 @@ function countTime() {
 	return time;
 }
 
-function getLevels(object) {
+function makeLevelRadioButtons(object) {
 
 	var output = '';
 	var length = Object.keys(object).length;
@@ -300,24 +350,73 @@ function removeClasses(id){
 function finishGame(object, tiles){
 	
 	//console.log(object);
+	/* nollställ spelplanen */
+	document.getElementById('memoryBoard').innerHTML = '';
+	/* nollställ memory arrays */
+	new_memory_array = [];
+	memory_values = [];
 	/* game status sätts till false för att kunna starta nytt spel */
 	game_started = false; 
 	/* timer-funktionen stannar */					
 	clearInterval(timer); 
 	hideElement('boardContainer');
 	removeClasses('endGameContainer');
-
+	if(isTimeOnHighscore(current_level.highscore, current_time)) {
+		// här ska det poppa upp så man kan skriva in sitt namn som sen sparas
+		document.getElementById('isTimeOnHighScore').innerHTML = 'You did it, awsm!';
+		removeClasses('highScoreContainer');
+	}
+	else {
+		// här ska det visas att du inte var bra nog för highscore
+		document.getElementById('isTimeOnHighScore').innerHTML = 'Sorry katten det här gick segt...';
+	}
+	current_time = 0;
 	getHighscore(object, 'highScore10', current_level.tiles, 10);
 }
 
+/**
+ * Hämtar allt som har med en nivå att göra
+ * @param  {object} object - hela vårt JSON-objekt
+ * @param  {number} num    - antalet tiles som vår nivå ska innehålla
+ * @return {object}        - ett objekt med namn, tiles, highscore och ev. nästa nivå
+ */
  function getLevel(object, num){
  	
+ 	/* hur många nivåer det finns */
 	var length = Object.keys(object.levels).length;
+
+	/* tomma variabler som används sen */
+	var name;
+	var tiles;
+	var nextlevel = false;
+
+	/* för varje nivå */
 	for(var i = 0; i < length; i++){
+		/* om antalet tiles på nivån motsvarar vår variabel "num" */
 		if(object.levels[i].tiles === Number(num)) {
-			return object.levels[i];
+
+			/* lägg in nivåns info i variabler */
+			name 	= object.levels[i].name;
+			tiles 	= object.levels[i].tiles;
+
+			/* hämta highscoren som hör till nivån */
+			highscore = object.highscore[tiles] ? object.highscore[tiles] : [];
+
+			/* kolla om det finns en nästa nivå, annars sätts den till false */
+			nextlevel = object.levels[Number(i+1)] ? object.levels[i+1].tiles : false;
 		}
-	} 
+	}
+
+	/* spara allt i ett objekt */
+	obj = {
+		'name': name,
+		'tiles': tiles,
+		'highscore': highscore,
+		'nextlevel': nextlevel
+	}
+
+	/* returnera objektet */
+	return obj;
 }
 
 function getHighscore(object, elementId, level, rows) {
@@ -325,14 +424,16 @@ function getHighscore(object, elementId, level, rows) {
 	level = typeof level !== 'undefined' ? level : 4;
 	rows = typeof rows !== 'undefined' ? rows : 3;
 
-	var highscore = object.highscore[level];
-
+	/* finns en highscore för svårighetsgraden hämtas den, annars gör vi en tom array */
+	var highscore = object.highscore[level] ? object.highscore[level] : [];
+	highscore = highscore.sort(compare);
+	/* är antalet rader i arrayen mindre än antalet rader vi vill hämta tar vi det värdet, annars vårt förvalda värde */
+	var length = Object.keys(highscore).length < rows ? Object.keys(highscore).length : rows;
+	
 	var output = '';
 
-	for(var i = 0; i < rows; i++) {
-		if (highscore[i]) {
+	for(var i = 0; i < length; i++) {
 			output += '<tr><td>'+highscore[i].name+'</td><td>'+highscore[i].time+'</td></tr>';
-		}
 	}
 
 	document.getElementById(elementId).innerHTML = output;
@@ -342,12 +443,41 @@ function getHighscore(object, elementId, level, rows) {
 	for(var i = 0; i < level_spans.length; i++) {
 		level_spans[i].innerHTML = current_level.name;
 	}
+
 }
 
-/*
-function saveToHighscore() {
+function compare(a,b) {
+	if (a.time < b.time) { 
+    	return -1;
+	} else if (a.time > b.time) { 
+		return 1;
+	} else {  
+    	return 0;
+	}
+}
 
-}*/
+function isTimeOnHighscore(highscoreList, myTime) {
+	var tempHighscoreList = highscoreList ? highscoreList : [];
+	var tempObj = {
+		name: '',
+		time: myTime
+	};
+
+	tempHighscoreList.push(tempObj);
+	tempHighscoreList = tempHighscoreList.sort(compare).slice(0, 10);
+
+	var is_highscore = false;
+	var length = Object.keys(tempHighscoreList).length
+
+	for(var i = 0; i < length; i++) {
+		is_highscore = tempHighscoreList[i].time === tempObj.time ? true : false;
+		if(is_highscore) return is_highscore;
+	}
+
+	return is_highscore;
+
+}
+
 
 
 
