@@ -467,7 +467,7 @@ function isTimeOnHighscore(highscoreList, myTime) {
 	tempHighscoreList = tempHighscoreList.sort(compare).slice(0, 10);
 
 	var is_highscore = false;
-	var length = Object.keys(tempHighscoreList).length
+	var length = Object.keys(tempHighscoreList).length;
 
 	for(var i = 0; i < length; i++) {
 		is_highscore = tempHighscoreList[i].time === tempObj.time ? true : false;
