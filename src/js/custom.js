@@ -201,7 +201,7 @@ function newBoard(included_tiles, no_of_tiles) {
      * @return {[type]}     [description]
      */
 	for(var i = 0; i < new_memory_array.length; i++){
-		output += '<div id="tile_'+i+'" style="width: '+size+'%; height: '+size+'%" onclick="memoryFlipTile(this,\''+new_memory_array[i]+'\')"></div>';
+		output += '<div class="tile" id="tile_'+i+'" style="width: '+size+'%; height: '+size+'%" onclick="memoryFlipTile(this,\''+new_memory_array[i]+'\')"></div>';
 	}
 	document.getElementById('memoryBoard').innerHTML = output;
 }
@@ -221,7 +221,12 @@ function memoryFlipTile(tile,val){
 		}
 
 		/* gör brickans bakgrundsfärg till vit */
-		tile.style.background = val;
+		if(val[0] === '#') {
+			tile.style.background = val;
+		}
+		else {
+			tile.style.background = 'url(px/'+val+'.jpg)';
+		}
 		/* ta värdet i på brickan och rita ut det som HTML i boxen */
 		tile.innerHTML = val;
 		/* om det är första brickan som vänds av två: */
@@ -270,9 +275,9 @@ function flip2Back(){
     // Flip the 2 tiles back over
     var tile_1 = document.getElementById(memory_tile_ids[0]);
     var tile_2 = document.getElementById(memory_tile_ids[1]);
-    tile_1.style.background = 'red';
+    tile_1.style.background = 'transparent';
     tile_1.innerHTML = "";
-    tile_2.style.background = 'red';
+    tile_2.style.background = 'transparent';
     tile_2.innerHTML = "";
     // Clear both arrays
     memory_values = [];
@@ -369,13 +374,14 @@ function finishGame(object, tiles){
 	if(current_level.highscore = isTimeOnHighscore(current_level.highscore, current_time)) {
 
 		// här ska det poppa upp så man kan skriva in sitt namn som sen sparas
-		document.getElementById('isTimeOnHighScore').innerHTML = 'You did it, awsm!';
+		document.getElementById('isTimeOnHighScore').innerHTML = 'You did it in '+current_time+' seconds. That\'s good enough for the highscore board!';
 		removeClasses('highScoreContainer');
 		removeClasses('endGameHigscoreForm');
 	}
 	else {
 		// här ska det visas att du inte var bra nog för highscore
-		document.getElementById('isTimeOnHighScore').innerHTML = 'Sorry katten det här gick segt...';
+		removeClasses('playAgain');
+		document.getElementById('isTimeOnHighScore').innerHTML = 'Sorry kitten, but your time of '+current_time+' seconds is waaaaaay to slow...';
 	}
 	current_time = 0;
 }
@@ -513,6 +519,7 @@ function saveToFile(highscore, object) {
 	// dölj input och visa highscore
 	/* göm endGameContainer */
 	hideElement('endGameHigscoreForm');
+	hideElement('endGameHigscore');
 
 	// rita ut rätt highscore
 	getHighscore(object, 'highScore10', current_level.tiles, 10);

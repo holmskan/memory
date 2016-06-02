@@ -1,3 +1,16 @@
+html, body, div, section, main, article {
+	box-sizing: border-box;
+}
+
+html, body {
+	margin:0;
+}
+
+h1, h2, h3 {
+	margin: 0;
+	padding: .7em;
+}
+
 .wrapper{
 	width:$maxWidthMobile;
 	margin:$margin;
@@ -5,8 +18,8 @@
 }
 
 section, div {
-	margin: 15px;
-	border: 2px solid black;
+	//margin: 15px;
+	//border: 2px solid black;
 	box-sizing:border-box;
 	//border-style: dotted;
 	border-color: $green;
@@ -28,64 +41,86 @@ th, td{
 }
 
 button{
-	border: 3px solid $green;
+	//border: 3px solid $green;
 	width: 150px;
 	background-color:$darkPink;
 }
 
 #formContainer {
-	margin: 15px;
-	border: 2px solid black;
-	border-style: dotted;
-	border-color: $green;
+	//margin: 15px;
+	//border: 2px solid black;
+	//border-style: dotted;
+	//border-color: $green;
 	box-sizing:border-box;
 }
 
 #boardContainer {
 
+	position: relative;
+
 	@include clearfix;
+	height: 100vh;
 	
-	div{
-		height: 100px;
-		width: 100%;
+	div#info-box {
+		height: 80px;
+		width: 80px;
+		background-color: rgba(255,255,255,0.6);
+		border-radius: 40px;
+		position: absolute;
+		top: 10px;
+		left: 10px;
 		margin:$margin;
 
 		#timer, #info{
-		border: 2px solid black;
+		//border: 2px solid black;
 		margin:$margin;
 		
 		}
 
 		#timer{
-			float: right;
+			
 		}
 
 		#info{
-			float: left;
+			display: none;
 		}	
 	}
 }
 
 div#memoryBoard{
 	@include clearfix;
-	background:#CCC;
+	background: linear-gradient(red, #ffcc00);
 	//width:100vw;
-	height:100vh;
+	height:100%;
+	width:100%;
 	margin:0px auto;
 	box-sizing: border-box;
 }
 
-div#memoryBoard > div{
-	background-color: red;
-	border:#000 1px solid;
-	width:20%;
-	height:25%;
-	float:left;
-	padding:20px;
-	font-size:64px;
-	cursor:pointer;
-	text-align:center;
-	box-sizing: border-box;
+div#memoryBoard {
+
+	> div {
+		//background: linear-gradient(red, #ffcc00);
+		border:white 1px solid;
+		width:25%;
+		height:25%;
+		float:left;
+		padding:20px;
+		font-size:64px;
+		cursor:pointer;
+		text-align:center;
+		box-sizing: border-box;
+
+		&.tile {
+			background-position: center center;
+			background-size: cover !important;
+			text-indent: -99999em;
+		}
+
+	}
+
+
+
 }
 
 .hide{
