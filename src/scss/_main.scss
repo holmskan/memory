@@ -4,6 +4,7 @@ html, body, div, section, main, article {
 
 html, body {
 	margin:0;
+	background-color: #f2f2f2;
 }
 
 h1, h2, h3 {
@@ -12,39 +13,79 @@ h1, h2, h3 {
 }
 
 .wrapper{
-	width:$maxWidthMobile;
-	margin:$margin;
-	background-color:pink;
+	width: $maxWidthMobile;
+	margin: $margin;
+	background-color: $light;
 }
 
 section, div {
 	//margin: 15px;
 	//border: 2px solid black;
-	box-sizing:border-box;
+	box-sizing: border-box;
 	//border-style: dotted;
-	border-color: $green;
+	border-color: $black;
 }
 
-section > div{
+section > div {
 	text-align:center;
 }
 
-table, th, td{
-	border:1px solid black;
-	margin:$margin;
+table, th, td {
+	border: 1px solid black;
+	margin: $margin;
+	border-collapse: collapse;
 }
 
-th, td{
+th {
+	width: 200px;
+	height: 30px;
+	font-family: $font;
+}
+
+td {
 	width: 200px;
 	height: 50px;
-	font-family:$font;
+	font-family: $font;
 }
 
-button{
-	//border: 3px solid $green;
+button {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
 	width: 150px;
-	background-color:$darkPink;
+	height: 30px;
+	cursor: pointer;
+	margin: 0 auto;
+	border: 2px solid $dark;
+	font: normal 24px "Advent Pro", Helvetica, sans-serif;
+	color: rgba(0,0,0,1);
+	text-align: center;
+	-o-text-overflow: clip;
+	text-overflow: clip;
+	letter-spacing: 1px;
+	background: $blueish;
+	-webkit-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
+	-moz-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
+	-o-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
+	transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
 }
+
+button:hover {
+	border: 2px solid $blueish;
+	color: rgba(255,255,255,1);
+	background: $dark;
+}
+
+button:active {
+	border: 2px solid rgba(33,224,163,1);
+	background: rgba(199,221,33,1);
+	-webkit-transition: none;
+	-moz-transition: none;
+	-o-transition: none;
+	transition: none;
+}
+
+
 
 #formContainer {
 	//margin: 15px;
@@ -62,18 +103,16 @@ button{
 	height: 100vh;
 	
 	div#info-box {
-		height: 80px;
-		width: 80px;
+		width: 100%;
+		height: 30px;
+		text-align: center;
 		background-color: rgba(255,255,255,0.6);
-		border-radius: 40px;
 		position: absolute;
-		top: 10px;
-		left: 10px;
-		margin:$margin;
+		margin: $margin;
 
 		#timer, #info{
 		//border: 2px solid black;
-		margin:$margin;
+		margin: $margin;
 		
 		}
 
@@ -89,7 +128,7 @@ button{
 
 div#memoryBoard{
 	@include clearfix;
-	background: linear-gradient(red, #ffcc00);
+	background: grey;
 	//width:100vw;
 	height:100%;
 	width:100%;
@@ -101,14 +140,14 @@ div#memoryBoard {
 
 	> div {
 		//background: linear-gradient(red, #ffcc00);
-		border:white 1px solid;
-		width:25%;
-		height:25%;
-		float:left;
-		padding:20px;
-		font-size:64px;
-		cursor:pointer;
-		text-align:center;
+		border: white 1px solid;
+		width: 25%;
+		height: 25%;
+		float: left;
+		padding: 20px;
+		font-size: 64px;
+		cursor: pointer;
+		text-align: center;
 		box-sizing: border-box;
 
 		&.tile {
@@ -118,8 +157,6 @@ div#memoryBoard {
 		}
 
 	}
-
-
 
 }
 

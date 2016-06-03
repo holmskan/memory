@@ -529,6 +529,13 @@ function saveToFile(highscore, object) {
 
 }
 
+document.getElementById('mainMenu').addEventListener('click', function() {
+
+		removeClasses('formContainer');
+
+		hideElement('endGameContainer');
+
+});
 
 
 
