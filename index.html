@@ -14,12 +14,11 @@
 <main class="wrapper">
 	<section id="formContainer" class="hide">
 		<div>
-			<h1>Choose difficulty!</h1>
+			<h1>CHOOSE DIFFICULTY</h1>
 
-			<form id="levels">
-	  		</form>
+			<form id="levels"></form>
 			<br>
-			<button id="startGame">Start!</button>
+			<button id="startGame">GO</button>
 			<br>
 			<br>
 		</div>
@@ -29,8 +28,8 @@
 				<table>
 					<thead>
 						<tr>
-							<th>Alias</th>
-							<th>Time</th>
+							<th>ALIAS</th>
+							<th>TIME</th>
 						</tr>
 					</thead>
 					<tbody id="highScore3">
@@ -52,19 +51,21 @@
 	</section>
 	<section id="endGameContainer" class="hide">
 		<div>
+			<br><br>
 			<button id="nextLevel">Next level</button><br>
 			<button id="playAgain" class="hide">Play again (syns bara om du lyckas med den svåra nivån)</button>
 			<p id="isTimeOnHighScore">You made it to the highscore top 10, enter your alias</p>
 			<section id="highScoreContainer" class="hide">
 				<div id="endGameHigscoreForm">
-					<label>Alias</label>
 					<br>
 					<input type="text" name="alias" id="alias" placeholder="Enter your alias!">
-					<br>
+					<br><br>
 					<button id="sendAlias">GO!</button>
+					<br><br>
 				</div>
 			</section>
-			<button id="mainMenu">Back to main menu</button>
+			<button id="mainMenu">Main menu</button>
+			<br><br>
 			<div id="endGameHighscore" class="hide">
 				<h1>Top 10 <span class="levelName"></span></h1>
 				<table>

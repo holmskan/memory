@@ -10,9 +10,9 @@ var current_time = 0;
 var timer;
 //var time = '';
 var current_level;
-var url = "/game2.json";
+var url = "/game.json";
 var current_object;
-	
+
 loadXMLDoc(url, function(object) {
 
 	/* ta bort eventuella klasser från formContainer */
@@ -529,6 +529,13 @@ function saveToFile(highscore, object) {
 
 }
 
+document.getElementById('mainMenu').addEventListener('click', function() {
+
+		removeClasses('formContainer');
+
+		hideElement('endGameContainer');
+
+});
 
 
 
