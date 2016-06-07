@@ -5,6 +5,7 @@ html, body, div, section, main, article {
 html, body {
 	margin:0;
 	background-color: #f2f2f2;
+	font-family: 'Oswald', sans-serif;
 }
 
 h1, h2, h3 {
@@ -12,17 +13,14 @@ h1, h2, h3 {
 	padding: .7em;
 }
 
-.wrapper{
+.wrapper {
 	width: $maxWidthMobile;
 	margin: $margin;
 	background-color: $light;
 }
 
 section, div {
-	//margin: 15px;
-	//border: 2px solid black;
 	box-sizing: border-box;
-	//border-style: dotted;
 	border-color: $black;
 }
 
@@ -40,12 +38,14 @@ th {
 	width: 200px;
 	height: 30px;
 	font-family: $font;
+	font-family: 'Oswald', sans-serif;
 }
 
 td {
 	width: 200px;
 	height: 50px;
 	font-family: $font;
+	font-family: 'Oswald', sans-serif;
 }
 
 button {
@@ -88,19 +88,13 @@ button:active {
 
 
 #formContainer {
-	//margin: 15px;
-	//border: 2px solid black;
-	//border-style: dotted;
-	//border-color: $green;
 	box-sizing:border-box;
 }
 
 #boardContainer {
-
 	position: relative;
-
-	@include clearfix;
 	height: 100vh;
+	@include clearfix;
 	
 	div#info-box {
 		width: 100%;
@@ -110,17 +104,11 @@ button:active {
 		position: absolute;
 		margin: $margin;
 
-		#timer, #info{
-		//border: 2px solid black;
-		margin: $margin;
-		
+		#timer, #info {
+			margin: $margin;	
 		}
 
-		#timer{
-			
-		}
-
-		#info{
+		#info {
 			display: none;
 		}	
 	}
@@ -129,14 +117,12 @@ button:active {
 div#memoryBoard{
 	@include clearfix;
 	background: grey;
-	//width:100vw;
 	height:100%;
 	width:100%;
 	margin:0px auto;
 	box-sizing: border-box;
 
 	> div {
-		//background: linear-gradient(red, #ffcc00);
 		border: white 1px solid;
 		width: 25%;
 		height: 25%;
