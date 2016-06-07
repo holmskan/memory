@@ -259,6 +259,11 @@ function memoryFlipTile(tile,val){
 			memory_tile_ids.push(tile.id);
 			/* om de båda värdena som är lagrade i memory_values är lika: */
 			if(memory_values[0] == memory_values[1]){
+				/* lägg till fadeklass på brickorna */
+            	var tile_1 = document.getElementById(memory_tile_ids[0]);
+    			var tile_2 = document.getElementById(memory_tile_ids[1]);
+    			fadeTile(tile_1);
+    			fadeTile(tile_2);
 				/* öka värdet på tiles_flipped med två */
 				tiles_flipped += 2;
 				/* nollställ båda arrayerna memory_values och memory_tile_ids */
@@ -375,11 +380,15 @@ function hideElement(id){
 }
 
 function flipperShow(e){
-	e.className='flipper animate';
+	e.className = 'flipper animate';
 }
 
 function flipperHide(e){
-	e.className='flipper';
+	e.className = 'flipper';
+}
+
+function fadeTile(e) {
+	e.className = 'tile fadeout';
 }
 
 function removeClasses(id){
@@ -405,7 +414,7 @@ function finishGame(object, tiles){
 		// här ska det poppa upp så man kan skriva in sitt namn som sen sparas
 		document.getElementById('isTimeOnHighScore').innerHTML = 'You did it in '+current_time+' seconds. That\'s good enough for the highscore board!';
 		removeClasses('highScoreContainer');
-		removeClasses('endGameHigscoreForm');
+		removeClasses('endGameHighScoreForm');
 	}
 	else {
 		// här ska det visas att du inte var bra nog för highscore
