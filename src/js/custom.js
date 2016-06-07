@@ -41,6 +41,7 @@ loadXMLDoc(url, function(object) {
 
 		/* när man klickar på den */
     	radio_buttons[i].onclick = function() {
+			
 
     		/* alltså, fan vet vad som händer här... witchcraft */
     		(prev) ? prev.value : null;
@@ -53,8 +54,10 @@ loadXMLDoc(url, function(object) {
 
         	/* hämta highscore för den markerade radioknappens nivå */
         	getHighscore(current_object, 'highScore3', this.value);
+			
+			/* spin på start-knappen när nivå ändras */
+			TweenMax.to('#startGame', 2, {rotation: 360*2, startAt: {rotation:0}});
         }
-        
     }
 
     /* när man klickar på "starta spel" */
@@ -300,8 +303,6 @@ function flip2Back(){
     memory_values = [];
     memory_tile_ids = [];
 }
-
-
 
 //document.getElementById('startGame').addEventListener('click', gameStatus);
 
