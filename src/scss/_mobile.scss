@@ -5,36 +5,18 @@
 	background-color: $light;
 }
 
-table, th, td {
-	border: 2px solid black;
-	width:90%;
-	border-collapse: collapse;
+#logga{
+
+	width:300px;
+	height:200px;;
+	
 }
 
-th {
-	width: 200px;
-	height: 30px;
-	font-family: helvetica;
-	font-weight: bold;
+table {
 
+	width:80%;
 }
 
-td {
-	width: 200px;
-	height: 50px;
-	font-family: $font;
-}
-
-#levels{
-
-	color:$black;
-
-
-	label{
-		padding: 1%;
-	}
-
-}
 
 div#memoryBoard{
 	@include clearfix;
@@ -59,39 +41,17 @@ div#memoryBoard{
 	}
 }
 
-button {
-	-webkit-box-sizing: content-box;
-	-moz-box-sizing: content-box;
-	box-sizing: content-box;
+button{
+
 	width: 60%;
 	height: 30px;
-	cursor: pointer;
-	margin: 0 auto;
-	border: 2px solid $black;
-	font-size: 15px;
-	color: $popcolor;
-	text-align: center;
-	-o-text-overflow: clip;
-	text-overflow: clip;
-	letter-spacing: 1px;
-	background: transparent;
-	-webkit-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
-	-moz-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
-	-o-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
-	transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
-}
-
-button:hover {
-	border: 2px solid $black;
-	color: rgba(255,255,255,1);
-	background: $popcolor;
 }
 
 /*endgamecontainer*/
 
 #alias{
 
-	width:80%;
+	width:60%;
 	height:30px; 
 }
 
@@ -99,6 +59,7 @@ button:hover {
 
 	font-weight:bold;
 	font-family:helvetica;
-	width:50%;
+	width:60%;
+	padding-top:5%;
 	margin:$margin;
 }
