@@ -201,7 +201,17 @@ function newBoard(included_tiles, no_of_tiles) {
      * @return {[type]}     [description]
      */
 	for(var i = 0; i < new_memory_array.length; i++){
-		output += '<div class="tile" id="tile_'+i+'" style="width: '+size+'%; height: '+size+'%" onclick="memoryFlipTile(this,\''+new_memory_array[i]+'\')"></div>';
+		output += 
+			'<div class="tile" id="tile_'+i+'" style="width: '+size+'%; height: '+size+'%" onclick="memoryFlipTile(this,\''+new_memory_array[i]+'\')">' +
+			'<div class="flipper">' +
+				'<div class="front">' +
+					//<!-- front content -->
+				'</div>' +
+				'<div class="back" style="background: url(px/'+new_memory_array[i]+'.jpg)">' +
+					//<!-- back content -->
+				'</div>' +
+			'</div>' +
+			'</div>';
 	}
 	document.getElementById('memoryBoard').innerHTML = output;
 }
@@ -214,7 +224,7 @@ function newBoard(included_tiles, no_of_tiles) {
  */
 function memoryFlipTile(tile,val){
 	/* om det finns html i vår tile-variabel och det inte är klickat på två brickor... */
-	if(tile.innerHTML == "" && memory_values.length < 2){
+	if(memory_values.length < 2){
 		if(game_started === false) {
 			timer = setInterval(countTime, 1000);
 			game_started = true;
@@ -222,13 +232,19 @@ function memoryFlipTile(tile,val){
 
 		/* gör brickans bakgrundsfärg till vit */
 		if(val[0] === '#') {
-			tile.style.background = val;
+			//tile.style.background = val;
 		}
 		else {
-			tile.style.background = 'url(px/'+val+'.jpg)';
+			//tile.style.background = 'url(px/'+val+'.jpg)';
 		}
 		/* ta värdet i på brickan och rita ut det som HTML i boxen */
-		tile.innerHTML = val;
+		//tile.innerHTML = val;
+		//tile.innerHTML = 
+			
+		
+		var flipper = tile.querySelector('.flipper');
+		flipperShow(flipper);
+
 		/* om det är första brickan som vänds av två: */
 		if(memory_values.length == 0){
 			/* lägg till värdet i memory_values */
@@ -261,7 +277,7 @@ function memoryFlipTile(tile,val){
 
 				}
 			} else {
-				setTimeout(flip2Back, 500);
+				setTimeout(flip2Back, 1500);
 			}
 		}
 	}
@@ -275,10 +291,15 @@ function flip2Back(){
     // Flip the 2 tiles back over
     var tile_1 = document.getElementById(memory_tile_ids[0]);
     var tile_2 = document.getElementById(memory_tile_ids[1]);
-    tile_1.style.background = 'transparent';
-    tile_1.innerHTML = "";
-    tile_2.style.background = 'transparent';
-    tile_2.innerHTML = "";
+    var flipper_1 = tile_1.querySelector('.flipper');
+    var flipper_2 = tile_2.querySelector('.flipper');
+    flipperHide(flipper_1);
+    flipperHide(flipper_2)
+;
+    //tile_1.style.background = 'transparent';
+    //tile_1.innerHTML = "";
+    //tile_2.style.background = 'transparent';
+    //tile_2.innerHTML = "";
     // Clear both arrays
     memory_values = [];
     memory_tile_ids = [];
@@ -351,6 +372,14 @@ function makeLevelRadioButtons(object) {
 
 function hideElement(id){
 	document.getElementById(id).className='hide';
+}
+
+function flipperShow(e){
+	e.className='flipper animate';
+}
+
+function flipperHide(e){
+	e.className='flipper';
 }
 
 function removeClasses(id){
