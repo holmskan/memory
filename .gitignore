@@ -1,0 +1,7 @@
+game.json
+game.json.BAK
+game2.json
+
+### Sass ###
+.sass-cache/
+*.css.map
