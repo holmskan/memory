@@ -402,6 +402,12 @@ function finishGame(object, tiles){
 	clearInterval(timer); 
 	hideElement('boardContainer');
 	removeClasses('endGameContainer');
+
+	if (!current_level.nextlevel){
+
+		hideElement('nextLevel');
+	}
+
 	if(current_level.highscore = isTimeOnHighscore(current_level.highscore, current_time)) {
 
 		// här ska det poppa upp så man kan skriva in sitt namn som sen sparas
