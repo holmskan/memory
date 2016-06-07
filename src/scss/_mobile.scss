@@ -2,7 +2,7 @@
 	width: 100%;
 	height: 100vh;
 	margin: $margin;
-	background-color: $light;
+	
 }
 
 #logga{
@@ -15,30 +15,6 @@
 table {
 
 	width:80%;
-}
-
-
-div#memoryBoard{
-	@include clearfix;
-	background: grey;
-	//width:100vw;
-	height:100%;
-	width:100%;
-	margin:0px auto;
-	box-sizing: border-box;
-
-	> div {
-		//background: linear-gradient(red, #ffcc00);
-		border: white 1px solid;
-		width: 25%;
-		height: 25%;
-		float: left;
-		font-size: 64px;
-		cursor: pointer;
-		text-align: center;
-		box-sizing: border-box;
-
-	}
 }
 
 button{

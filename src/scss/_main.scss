@@ -4,7 +4,7 @@ html, body, div, section, main, article {
 
 html, body {
 	margin:0;
-	background-color: #f2f2f2;
+	background-color: $light;
 	font-family: 'Oswald', sans-serif;
 }
 
@@ -118,7 +118,7 @@ button:hover {
 
 div#memoryBoard{
 	@include clearfix;
-	background: grey;
+	background: $popcolor;
 	height:100%;
 	width:100%;
 	margin:0px auto;
