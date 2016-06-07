@@ -1,0 +1,23 @@
+
+
+.wrapper {
+	width: 100%;
+}
+
+#levels {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 90%;
+	margin: 0 auto;
+}
+label {
+	outline: 1px solid black; 
+	width: 30%;
+	margin: 1%;
+}
+
+table.top3highscore {
+	width: 90%;
+}
+

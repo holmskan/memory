@@ -225,10 +225,12 @@ function newBoard(included_tiles, no_of_tiles) {
 function memoryFlipTile(tile, val){
 	/* om det finns html i vår tile-variabel och det inte är klickat på två brickor... */
 	if(memory_values.length < 2 && !tile.hasAttribute('data-flipped')){
+
 		if(game_started === false) {
 			timer = setInterval(countTime, 1000);
 			game_started = true;
 		}
+
 			
 		tile.setAttribute('data-flipped', true);
 		
@@ -293,7 +295,7 @@ function flip2Back(){
     
     flipperHide(flipper_1);
     flipperHide(flipper_2);
-  
+
     // Clear both arrays
     memory_values = [];
     memory_tile_ids = [];

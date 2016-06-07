@@ -1,6 +1,4 @@
-game.json
-game.json.BAK
-game2.json
+*.json
 
 ### Sass ###
 .sass-cache/
