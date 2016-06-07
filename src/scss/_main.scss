@@ -151,7 +151,7 @@ div#memoryBoard {
 		box-sizing: border-box;
 
 		&.tile {
-			background-position: center center;
+			background-position: center;
 			background-size: cover !important;
 			text-indent: -99999em;
 		}
@@ -160,7 +160,7 @@ div#memoryBoard {
 
 }
 
-.hide{
+.hide {
 	display:none;
 }
 
