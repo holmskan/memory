@@ -222,25 +222,15 @@ function newBoard(included_tiles, no_of_tiles) {
  * @param  {Number} val  	Brickans värde - finns två av varje på brädet
  * @return {type} [description]
  */
-function memoryFlipTile(tile,val){
+function memoryFlipTile(tile, val){
 	/* om det finns html i vår tile-variabel och det inte är klickat på två brickor... */
-	if(memory_values.length < 2){
+	if(memory_values.length < 2 && !tile.hasAttribute('data-flipped')){
 		if(game_started === false) {
 			timer = setInterval(countTime, 1000);
 			game_started = true;
 		}
-
-		/* gör brickans bakgrundsfärg till vit */
-		if(val[0] === '#') {
-			//tile.style.background = val;
-		}
-		else {
-			//tile.style.background = 'url(px/'+val+'.jpg)';
-		}
-		/* ta värdet i på brickan och rita ut det som HTML i boxen */
-		//tile.innerHTML = val;
-		//tile.innerHTML = 
 			
+		tile.setAttribute('data-flipped', true);
 		
 		var flipper = tile.querySelector('.flipper');
 		flipperShow(flipper);
@@ -259,6 +249,11 @@ function memoryFlipTile(tile,val){
 			memory_tile_ids.push(tile.id);
 			/* om de båda värdena som är lagrade i memory_values är lika: */
 			if(memory_values[0] == memory_values[1]){
+				/* lägg till fadeklass på brickorna */
+            	var tile_1 = document.getElementById(memory_tile_ids[0]);
+    			var tile_2 = document.getElementById(memory_tile_ids[1]);
+    			fadeTile(tile_1);
+    			fadeTile(tile_2);
 				/* öka värdet på tiles_flipped med två */
 				tiles_flipped += 2;
 				/* nollställ båda arrayerna memory_values och memory_tile_ids */
@@ -273,11 +268,9 @@ function memoryFlipTile(tile,val){
 					//document.getElementById('memoryBoard').innerHTML = "";
 					/* rita ut ett nytt bräde */
 					//newBoard();
-					
-
 				}
 			} else {
-				setTimeout(flip2Back, 1500);
+				setTimeout(flip2Back, 1000);
 			}
 		}
 	}
@@ -291,15 +284,16 @@ function flip2Back(){
     // Flip the 2 tiles back over
     var tile_1 = document.getElementById(memory_tile_ids[0]);
     var tile_2 = document.getElementById(memory_tile_ids[1]);
+
+    tile_1.removeAttribute('data-flipped');
+    tile_2.removeAttribute('data-flipped');
+
     var flipper_1 = tile_1.querySelector('.flipper');
     var flipper_2 = tile_2.querySelector('.flipper');
+    
     flipperHide(flipper_1);
-    flipperHide(flipper_2)
-;
-    //tile_1.style.background = 'transparent';
-    //tile_1.innerHTML = "";
-    //tile_2.style.background = 'transparent';
-    //tile_2.innerHTML = "";
+    flipperHide(flipper_2);
+  
     // Clear both arrays
     memory_values = [];
     memory_tile_ids = [];
@@ -375,19 +369,25 @@ function hideElement(id){
 }
 
 function flipperShow(e){
-	e.className='flipper animate';
+	e.className = 'flipper animate';
 }
 
 function flipperHide(e){
-	e.className='flipper';
+	e.className = 'flipper';
+}
+
+function fadeTile(e) {
+	e.className = 'tile fadeout';
 }
 
 function removeClasses(id){
+	console.log(id);
 	document.getElementById(id).className='';
 }
 
 function finishGame(object, tiles){
 	
+	alert('Congratz! You diddit :)');
 	//console.log(object);
 	/* nollställ spelplanen */
 	document.getElementById('memoryBoard').innerHTML = '';
@@ -405,7 +405,7 @@ function finishGame(object, tiles){
 		// här ska det poppa upp så man kan skriva in sitt namn som sen sparas
 		document.getElementById('isTimeOnHighScore').innerHTML = 'You did it in '+current_time+' seconds. That\'s good enough for the highscore board!';
 		removeClasses('highScoreContainer');
-		removeClasses('endGameHigscoreForm');
+		//removeClasses('endGameHighScoreForm');
 	}
 	else {
 		// här ska det visas att du inte var bra nog för highscore
@@ -547,8 +547,8 @@ function saveToFile(highscore, object) {
 
 	// dölj input och visa highscore
 	/* göm endGameContainer */
-	hideElement('endGameHigscoreForm');
-	hideElement('endGameHigscore');
+	hideElement('endGameHighscoreForm');
+	//hideElement('endGameHighscore');
 
 	// rita ut rätt highscore
 	getHighscore(object, 'highScore10', current_level.tiles, 10);
