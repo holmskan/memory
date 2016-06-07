@@ -13,7 +13,11 @@ var current_level;
 var url = "/game.json";
 var current_object;
 
+
 loadXMLDoc(url, function(object) {
+	//TweenMax.to('#logga', 2, {rotation: 360*2, startAt: {rotation:0}});
+	TweenMax.to('#logga', 1, {scaleX:1.1, scaleY:1.1, repeat:-1, yoyo:true});
+	TweenMax.to('#nextLevel', 1, {scaleX:1.1, scaleY:1.1, repeat:-1, yoyo:true});
 
 	/* ta bort eventuella klasser från formContainer */
 	removeClasses('formContainer');
