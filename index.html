@@ -8,15 +8,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/style.css">
-		<link rel="icon" type="image/png" src="myicon.png">		
+		<link rel="icon" type="image/png" href="/px/fjaril.png">
 		<style type="text/css"></style>
 	</head>
 	<body>
 <main class="wrapper">
 	<section id="formContainer" class="hide">
 		<div>
-			<h1>CHOOSE DIFFICULTY</h1>
-
+			<h1>LET'S PLAY MEMO!</h1>
+			<h2>CHOOSE YOUR LEVEL:</h2>
 			<form id="levels"></form>
 			<br>
 			<button id="startGame">GO</button>
@@ -26,7 +26,7 @@
 		<section class="highscore">
 			<div>
 			<h1>Top 3 <span class="levelName"></span></h1>
-				<table>
+				<table class="top3highscore">
 					<thead>
 						<tr>
 							<th>ALIAS</th>
@@ -57,11 +57,11 @@
 			<button id="playAgain" class="hide">Play again (syns bara om du lyckas med den svåra nivån)</button>
 			<p id="isTimeOnHighScore">You made it to the highscore top 10, enter your alias</p>
 			<section id="highScoreContainer" class="hide">
-				<div id="endGameHigscoreForm">
+				<div id="endGameHighscoreForm">
 					<br>
 					<input type="text" name="alias" id="alias" placeholder="Enter your alias!">
 					<br><br>
-					<button id="sendAlias">GO!</button>
+					<button id="sendAlias">SAVE</button>
 					<br><br>
 				</div>
 			</section>

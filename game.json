@@ -1,9 +1,7 @@
+
 {
 	"levels": [
-		{
-			"name": "Skitlätt",
-			"tiles": 2
-		},
+		
 
 		{
 			"name": "Easy",
@@ -103,3 +101,4 @@
 			]
 		}
 }
+
