@@ -226,6 +226,8 @@ function memoryFlipTile(tile, val){
 	/* om det finns html i vår tile-variabel och det inte är klickat på två brickor... */
 	if(memory_values.length < 2 && !tile.hasAttribute('data-flipped')){
 
+		//playSound('sounds/gasp_ohhh.wav');
+
 		if(game_started === false) {
 			timer = setInterval(countTime, 1000);
 			game_started = true;
@@ -251,6 +253,7 @@ function memoryFlipTile(tile, val){
 			memory_tile_ids.push(tile.id);
 			/* om de båda värdena som är lagrade i memory_values är lika: */
 			if(memory_values[0] == memory_values[1]){
+				playSound('sounds/woow_x.wav');
 				/* lägg till fadeklass på brickorna */
             	var tile_1 = document.getElementById(memory_tile_ids[0]);
     			var tile_2 = document.getElementById(memory_tile_ids[1]);
@@ -283,6 +286,9 @@ function memoryFlipTile(tile, val){
  * @return {[type]} [description]
  */
 function flip2Back(){
+
+	//playSound('sounds/boo.wav');
+
     // Flip the 2 tiles back over
     var tile_1 = document.getElementById(memory_tile_ids[0]);
     var tile_2 = document.getElementById(memory_tile_ids[1]);
@@ -389,6 +395,7 @@ function removeClasses(id){
 
 function finishGame(object, tiles){
 	
+	playSound('sounds/fanfare3.wav');
 	alert('Congratz! You diddit :)');
 	//console.log(object);
 	/* nollställ spelplanen */
@@ -402,8 +409,7 @@ function finishGame(object, tiles){
 	clearInterval(timer); 
 	hideElement('boardContainer');
 	removeClasses('endGameContainer');
-	if(current_level.highscore = isTimeOnHighscore(current_level.highscore, current_time)) {
-
+	if(current_level.highscore = isTimeOnHighscore(current_level.highscore, current_time)) {	
 		// här ska det poppa upp så man kan skriva in sitt namn som sen sparas
 		document.getElementById('isTimeOnHighScore').innerHTML = 'You did it in '+current_time+' seconds. That\'s good enough for the highscore board!';
 		removeClasses('highScoreContainer');
@@ -557,18 +563,22 @@ function saveToFile(highscore, object) {
 
 	/* visa boardContainer */
 	removeClasses('endGameHighscore');
+	playSound('sounds/fanfare2.wav');
 
 }
 
 document.getElementById('mainMenu').addEventListener('click', function() {
 
 		removeClasses('formContainer');
-
 		hideElement('endGameContainer');
 
 });
 
-
+function playSound(src){
+	var audio = document.getElementById('audioSrc');
+	audio.setAttribute('src', src);
+	audio.play();
+}
 
 
 
