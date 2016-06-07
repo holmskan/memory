@@ -147,6 +147,7 @@ div#memoryBoard{
 		box-sizing: border-box;
 
 		&.tile {
+
 			text-indent: -99999em;
 			perspective: 1000px;
 
@@ -192,7 +193,7 @@ div#memoryBoard{
 	}
 }
 
-.hide{
+.hide {
 	display:none;
 }
 

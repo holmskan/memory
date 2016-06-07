@@ -414,7 +414,7 @@ function finishGame(object, tiles){
 		// här ska det poppa upp så man kan skriva in sitt namn som sen sparas
 		document.getElementById('isTimeOnHighScore').innerHTML = 'You did it in '+current_time+' seconds. That\'s good enough for the highscore board!';
 		removeClasses('highScoreContainer');
-		removeClasses('endGameHigscoreForm');
+		removeClasses('endGameHighScoreForm');
 	}
 	else {
 		// här ska det visas att du inte var bra nog för highscore
