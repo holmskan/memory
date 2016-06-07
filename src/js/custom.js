@@ -224,11 +224,13 @@ function newBoard(included_tiles, no_of_tiles) {
  */
 function memoryFlipTile(tile,val){
 	/* om det finns html i vår tile-variabel och det inte är klickat på två brickor... */
-	if(memory_values.length < 2){
+	if(!tile.hasAttribute('data-flipped') && memory_values.length < 2){
 		if(game_started === false) {
 			timer = setInterval(countTime, 1000);
 			game_started = true;
 		}
+
+		tile.setAttribute('data-flipped', true);
 
 		/* gör brickans bakgrundsfärg till vit */
 		if(val[0] === '#') {
@@ -296,11 +298,12 @@ function flip2Back(){
     // Flip the 2 tiles back over
     var tile_1 = document.getElementById(memory_tile_ids[0]);
     var tile_2 = document.getElementById(memory_tile_ids[1]);
+    tile_1.removeAttribute('data-flipped');
+    tile_2.removeAttribute('data-flipped');
     var flipper_1 = tile_1.querySelector('.flipper');
     var flipper_2 = tile_2.querySelector('.flipper');
     flipperHide(flipper_1);
-    flipperHide(flipper_2)
-;
+    flipperHide(flipper_2);
     //tile_1.style.background = 'transparent';
     //tile_1.innerHTML = "";
     //tile_2.style.background = 'transparent';
