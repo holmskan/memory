@@ -1,13 +1,21 @@
-.wrapper{
+
+.wrapper {
 	width: 100%;
 	height: 100vh;
 	margin: $margin;
 	background-color: $light;
 }
 
+#boardContainer {
+	margin-top: 40px !important;
+	height: 100vw;
+	width: 100vw;
+	margin: 0 auto;
+}
+
 table, th, td {
 	border: 2px solid black;
-	width:90%;
+	width: 90%;
 	border-collapse: collapse;
 }
 
@@ -25,24 +33,23 @@ td {
 	font-family: $font;
 }
 
-#levels{
+#levels {
 
 	color:$black;
 
-
-	label{
+	label {
 		padding: 1%;
 	}
-
 }
 
-div#memoryBoard{
+div#memoryBoard {
 	@include clearfix;
 	background: grey;
 	//width:100vw;
 	height:100%;
 	width:100%;
-	margin:0px auto;
+	margin: 0px auto;
+	margin-top: 30px;
 	box-sizing: border-box;
 
 	> div {
@@ -89,14 +96,12 @@ button:hover {
 
 /*endgamecontainer*/
 
-#alias{
-
+#alias {
 	width:80%;
 	height:30px; 
 }
 
-#isTimeOnHighScore{
-
+#isTimeOnHighScore {
 	font-weight:bold;
 	font-family:helvetica;
 	padding-top: 5%;

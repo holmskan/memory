@@ -3,7 +3,7 @@ html, body, div, section, main, article {
 }
 
 html, body {
-	margin:0;
+	margin: 0;
 	background-color: #f2f2f2;
 	font-family: 'Oswald', sans-serif;
 }
@@ -76,12 +76,8 @@ button:hover {
 	background: $dark;
 }
 
-
-
-
-
 #formContainer {
-	box-sizing:border-box;
+	box-sizing: border-box;
 }
 
 #boardContainer {
@@ -107,12 +103,13 @@ button:hover {
 	}
 }
 
-div#memoryBoard{
+div#memoryBoard {
 	@include clearfix;
 	background: grey;
-	height:100%;
-	width:100%;
-	margin:0px auto;
+	height: 100%;
+	width: 100%;
+	margin: 0px auto;
+	margin-top: 30px;
 	box-sizing: border-box;
 
 	> div {
@@ -178,24 +175,3 @@ div#memoryBoard{
 .hide {
 	display:none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -11,8 +11,16 @@
 	width: 90%;
 	margin: 0 auto;
 }
+
+#boardContainer {
+	margin-top: 40px !important;
+	height: 100vw;
+	width: 100vw;
+	margin: 0 auto;
+}
+
 label {
-	outline: 1px solid black; 
+	//outline: 1px solid black; 
 	width: 30%;
 	margin: 1%;
 }
@@ -20,4 +28,3 @@ label {
 table.top3highscore { 
 	width: 90%;
 }
-
