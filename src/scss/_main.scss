@@ -3,8 +3,9 @@ html, body, div, section, main, article {
 }
 
 html, body {
-	margin: 0;
-	background-color: #f2f2f2;
+
+	margin:0;
+	background-color: $light;
 	font-family: 'Oswald', sans-serif;
 }
 
@@ -29,7 +30,7 @@ section > div {
 }
 
 table, th, td {
-	border: 1px solid black;
+	border: 2px solid black;
 	margin: $margin;
 	border-collapse: collapse;
 }
@@ -52,18 +53,16 @@ button {
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
-	width: 150px;
-	height: 30px;
 	cursor: pointer;
 	margin: 0 auto;
-	border: 2px solid $dark;
-	font: normal 24px "Advent Pro", Helvetica, sans-serif;
-	color: rgba(0,0,0,1);
+	border: 2px solid $black;
+	font-size: 20px;
+	color: $popcolor;
 	text-align: center;
 	-o-text-overflow: clip;
 	text-overflow: clip;
 	letter-spacing: 1px;
-	background: $blueish;
+	background: transparent;
 	-webkit-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
 	-moz-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
 	-o-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
@@ -71,9 +70,9 @@ button {
 }
 
 button:hover {
-	border: 2px solid $blueish;
+	border: 2px solid $black;
 	color: rgba(255,255,255,1);
-	background: $dark;
+	background: $popcolor;
 }
 
 #formContainer {
@@ -91,6 +90,7 @@ button:hover {
 		text-align: center;
 		background-color: rgba(255,255,255,0.6);
 		position: absolute;
+		top: -30px;
 		margin: $margin;
 
 		#timer, #info {
@@ -103,13 +103,23 @@ button:hover {
 	}
 }
 
+#levels {
+
+	color:$black;
+
+
+	label {
+		padding: 2%;
+	}
+
+}
+
 div#memoryBoard {
 	@include clearfix;
-	background: grey;
-	height: 100%;
-	width: 100%;
-	margin: 0px auto;
-	margin-top: 30px;
+	background: $popcolor;
+	height:100%;
+	width:100%;
+	margin:0px auto;
 	box-sizing: border-box;
 
 	> div {

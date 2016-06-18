@@ -1,6 +1,3 @@
-// Scripted By Adam Khoury in connection with the following video tutorial:
-// http://www.youtube.com/watch?v=c_ohDPWmsM0
-
 var new_memory_array = [];
 var memory_values = [];
 var memory_tile_ids = [];
@@ -8,12 +5,15 @@ var tiles_flipped = 0;
 var game_started = false; 
 var current_time = 0;
 var timer;
-//var time = '';
 var current_level;
 var url = "/game.json";
 var current_object;
 
+
 loadXMLDoc(url, function(object) {
+	//TweenMax.to('#logga', 2, {rotation: 360*2, startAt: {rotation:0}});
+	TweenMax.to('#logga', 1, {scaleX:1.1, scaleY:1.1, repeat:-1, yoyo:true});
+	TweenMax.to('#nextLevel', 1, {scaleX:1.1, scaleY:1.1, repeat:-1, yoyo:true});
 
 	/* ta bort eventuella klasser från formContainer */
 	removeClasses('formContainer');
@@ -42,7 +42,6 @@ loadXMLDoc(url, function(object) {
 		/* när man klickar på den */
     	radio_buttons[i].onclick = function() {
 			
-
     		/* alltså, fan vet vad som händer här... witchcraft */
     		(prev) ? prev.value : null;
         	if(this !== prev) {
@@ -132,8 +131,6 @@ function loadXMLDoc(url, cb) {
    xmlhttp.send();
 
 }
-
-//var memory_array = ['A','A','B','B','C','C','D','D','E','E','F','F','G','G','H','H','I','I','J','J'];
 
 /**
  * Shufflefunktion för vår array
@@ -308,15 +305,6 @@ function flip2Back(){
     // Clear both arrays
     memory_values = [];
     memory_tile_ids = [];
-}
-
-//document.getElementById('startGame').addEventListener('click', gameStatus);
-
-function gameStatus () { 
-	if(game_started === false) {
-		timer = setInterval(countTime, 1000);
-		game_started = true;
-	} // när spelet är slut : game_started = false; clearInterval(timer); 
 }
 
 function countTime() {
@@ -580,9 +568,4 @@ function playSound(src){
 	audio.setAttribute('src', src);
 	audio.play();
 }
-
-
-
-
-
 
