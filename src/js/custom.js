@@ -398,7 +398,14 @@ function finishGame(object, tiles){
 	clearInterval(timer); 
 	hideElement('boardContainer');
 	removeClasses('endGameContainer');
-	if(current_level.highscore = isTimeOnHighscore(current_level.highscore, current_time)) {	
+
+	if (!current_level.nextlevel){
+
+		hideElement('nextLevel');
+	}
+
+	if(current_level.highscore = isTimeOnHighscore(current_level.highscore, current_time)) {
+
 		// här ska det poppa upp så man kan skriva in sitt namn som sen sparas
 		document.getElementById('isTimeOnHighScore').innerHTML = 'You did it in '+current_time+' seconds. That\'s good enough for the highscore board!';
 		removeClasses('highScoreContainer');

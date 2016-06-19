@@ -3,6 +3,7 @@ html, body, div, section, main, article {
 }
 
 html, body {
+
 	margin:0;
 	background-color: $light;
 	font-family: 'Oswald', sans-serif;
@@ -74,12 +75,8 @@ button:hover {
 	background: $popcolor;
 }
 
-
-
-
-
 #formContainer {
-	box-sizing:border-box;
+	box-sizing: border-box;
 }
 
 #boardContainer {
@@ -93,6 +90,7 @@ button:hover {
 		text-align: center;
 		background-color: rgba(255,255,255,0.6);
 		position: absolute;
+		top: -30px;
 		margin: $margin;
 
 		#timer, #info {
@@ -105,18 +103,18 @@ button:hover {
 	}
 }
 
-#levels{
+#levels {
 
 	color:$black;
 
 
-	label{
+	label {
 		padding: 2%;
 	}
 
 }
 
-div#memoryBoard{
+div#memoryBoard {
 	@include clearfix;
 	background: $popcolor;
 	height:100%;
@@ -187,24 +185,3 @@ div#memoryBoard{
 .hide {
 	display:none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

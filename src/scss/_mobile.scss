@@ -1,23 +1,78 @@
-.wrapper{
+
+.wrapper {
 	width: 100%;
 	height: 100vh;
 	margin: $margin;
 	
 }
 
-#logga{
+#boardContainer {
+	margin-top: 30px !important;
+	height: 100vw;
+	width: 100vw;
+	margin: 0 auto;
+}
+
+table, th, td {
+	border: 2px solid black;
+	width: 90%;
+	border-collapse: collapse;
+}
+
+th {
+	width: 200px;
+	height: 30px;
+	font-family: helvetica;
+	font-weight: bold;
+
+}
+
+#logga {
+
 
 	width:300px;
 	height:200px;;
 	
 }
 
-table {
+#levels {
 
+	color:$black;
+
+	label {
+		padding: 1%;
+	}
+}
+
+div#memoryBoard {
+	@include clearfix;
+	background: grey;
+	//width:100vw;
+	height:100%;
+	width:100%;
+	margin: 0px auto;
+	margin-top: 30px;
+	box-sizing: border-box;
+
+	> div {
+		//background: linear-gradient(red, #ffcc00);
+		border: white 1px solid;
+		width: 25%;
+		height: 25%;
+		float: left;
+		font-size: 64px;
+		cursor: pointer;
+		text-align: center;
+		box-sizing: border-box;
+
+	}
+}
+
+table {
 	width:80%;
 }
 
-button{
+button {
 
 	width: 60%;
 	height: 30px;
@@ -25,14 +80,12 @@ button{
 
 /*endgamecontainer*/
 
-#alias{
-
-	width:60%;
+#alias {
+	width:80%;
 	height:30px; 
 }
 
-#isTimeOnHighScore{
-
+#isTimeOnHighScore {
 	font-weight:bold;
 	font-family:helvetica;
 	width:60%;
