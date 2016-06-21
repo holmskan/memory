@@ -6,12 +6,12 @@ var game_started = false;
 var current_time = 0;
 var timer;
 var current_level;
-var url = "/game.json";
+var url = "./game.json";
 var current_object;
 
 
 loadXMLDoc(url, function(object) {
-	//TweenMax.to('#logga', 2, {rotation: 360*2, startAt: {rotation:0}});
+	/* animation logga och nästa nivå */
 	TweenMax.to('#logga', 1, {scaleX:1.1, scaleY:1.1, repeat:-1, yoyo:true});
 	TweenMax.to('#nextLevel', 1, {scaleX:1.1, scaleY:1.1, repeat:-1, yoyo:true});
 
@@ -54,7 +54,7 @@ loadXMLDoc(url, function(object) {
         	/* hämta highscore för den markerade radioknappens nivå */
         	getHighscore(current_object, 'highScore3', this.value);
 			
-			/* spin på start-knappen när nivå ändras */
+			/* spin-animation på start-knappen när nivå ändras */
 			TweenMax.to('#startGame', 2, {rotation: 360*2, startAt: {rotation:0}});
         }
     }
@@ -99,9 +99,7 @@ loadXMLDoc(url, function(object) {
 
 	/* när man klickar på "nästa nivå" */
 	document.getElementById('sendAlias').addEventListener('click', function() {
-		
-		saveToFile(current_level.highscore, current_object);
-		
+		saveToFile(current_level.highscore, current_object);		
 	});
 
 	/* hämta highscore för förstasidan, alla parametrar för det är förberedda i funktionen */
@@ -225,14 +223,10 @@ function newBoard(included_tiles, no_of_tiles) {
 function memoryFlipTile(tile, val){
 	/* om det finns html i vår tile-variabel och det inte är klickat på två brickor... */
 	if(memory_values.length < 2 && !tile.hasAttribute('data-flipped')){
-
-		//playSound('sounds/gasp_ohhh.wav');
-
 		if(game_started === false) {
 			timer = setInterval(countTime, 1000);
 			game_started = true;
 		}
-
 			
 		tile.setAttribute('data-flipped', true);
 		
@@ -386,7 +380,6 @@ function finishGame(object, tiles){
 	
 	playSound('sounds/fanfare3.wav');
 	alert('Congratz! You diddit :)');
-	//console.log(object);
 	/* nollställ spelplanen */
 	document.getElementById('memoryBoard').innerHTML = '';
 	/* nollställ memory arrays */
@@ -398,15 +391,18 @@ function finishGame(object, tiles){
 	clearInterval(timer); 
 	hideElement('boardContainer');
 	removeClasses('endGameContainer');
-	if(current_level.highscore = isTimeOnHighscore(current_level.highscore, current_time)) {	
+
+	if (!current_level.nextlevel){
+		hideElement('nextLevel');
+	}
+
+	if(current_level.highscore = isTimeOnHighscore(current_level.highscore, current_time)) {
 		// här ska det poppa upp så man kan skriva in sitt namn som sen sparas
 		document.getElementById('isTimeOnHighScore').innerHTML = 'You did it in '+current_time+' seconds. That\'s good enough for the highscore board!';
 		removeClasses('highScoreContainer');
-		//removeClasses('endGameHighScoreForm');
 	}
 	else {
 		// här ska det visas att du inte var bra nog för highscore
-		removeClasses('playAgain');
 		document.getElementById('isTimeOnHighScore').innerHTML = 'Sorry kitten, but your time of '+current_time+' seconds is waaaaaay to slow...';
 	}
 	current_time = 0;
